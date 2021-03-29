@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import LoginModule from './module/LoginModule';
+import LoginButton from './module/LoginButton';
 
 function App() {
   return (
     <div className="App">
 
 
-        <LoginModule />
+        <LoginButton />
 
         
     </div>
