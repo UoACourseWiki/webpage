@@ -1,14 +1,23 @@
 import { useState } from "react";
-import { Modal, Button, makeStyles } from "@material-ui/core";
+import { Modal, Button } from "@material-ui/core";
 
 const LoginDialogue = (props) => {
     // console.log("I'm called!");
     const [userInputEmail, setUserInputEmail] = useState("default@email.com");
     const [userInputPassword, setUserInputPassword] = useState("password");
 
-    const [info, setInfo] = useState({userInputEmail, userInputPassword});
+    // const [info, setInfo] = useState({userInputEmail, userInputPassword});
 
-    //Initialize useState hook
+    // const handleChange = (e) => {
+    //     console.log(e.target.value)
+    // }
+
+    //This method should be replaced with a proper form submission / request action
+    const handleSubmit = () => {
+        var userSubmit = {userInputEmail, userInputPassword};
+        console.log(userSubmit);
+        props.onClose();
+    }
 
     //Following is an temp inline style sheet, please replace with material-ui makeStyle(theme) method
     const modalContentStyle = {
@@ -19,22 +28,17 @@ const LoginDialogue = (props) => {
         width: "80%",
     }
 
-    //This method should be replaced with a proper form submission / request action
-    const submitForm = (info) => {
-        console.log(info);
-        props.onClose();
-    }
 
     const modalContent = 
         <div style={modalContentStyle}>
-                <h2>LOGIN</h2>
-                <label>Email</label>
-                <input type="text"></input>
-                <br/>
-                <label>Password</label>
-                <input type="text"></input>
-                <br/>
-                <Button onClick={()=>submitForm(info)}>Login</Button> 
+            <h2>LOGIN</h2>
+            <label>Email</label>
+            <input type="text" onChange={e=>setUserInputEmail(e.target.value)}></input>
+            <br/>
+            <label>Password</label>
+            <input type="text" onChange={e=>setUserInputPassword(e.target.value)}></input>
+            <br/>
+            <Button onClick={handleSubmit}>Login</Button>
         </div>
     
 
