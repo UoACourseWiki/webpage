@@ -1,14 +1,14 @@
-import './App.css';
-import LoginButton from './module/LoginButton';
+import { Switch, Route } from "react-router-dom";
+import { Homepage } from "./homepage";
 
 function App() {
   return (
-    <div className="App">
-
-
-        <LoginButton />
-
-        
+    <div>
+      <Switch>
+        <Route path="/">
+          <Homepage />
+        </Route>
+      </Switch>
     </div>
   );
 }
