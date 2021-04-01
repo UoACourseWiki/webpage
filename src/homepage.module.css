@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.version {
+  position: fixed;
+  bottom: 0;
+  width: 20%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+
+  color: lightslategray;
+  font-size: 12px;
+  text-align: center;
+}
