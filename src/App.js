@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import { Homepage } from "./homepage";
+import { InitRouters } from "./Routers";
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
           <Homepage />
         </Route>
       </Switch>
+
+      <InitRouters />
     </div>
   );
 }
