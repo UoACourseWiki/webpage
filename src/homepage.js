@@ -7,7 +7,8 @@ import { useState } from "react";
 function Homepage() {
   return (
     <div className={styles.App}>
-      <LoginButton />
+      {/* <LoginButton /> */}
+      <p>Please use your own URL for component test</p>
 
       <div>
         <ShowVersion />

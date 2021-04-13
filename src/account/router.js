@@ -1,6 +1,8 @@
+import react from "react";
+import Login from "./Login.js";
+
 function init() {
-  const path = "/replace/with/your/module's/router/Here~";
-  return <h2>🤗 {path}</h2>;
+  return <Login />;
 }
 
 export { init };
