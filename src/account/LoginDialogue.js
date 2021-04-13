@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal, Button } from "@material-ui/core";
+import axios from "axios";
 
 const LoginDialogue = (props) => {
     const [userInputEmail, setUserInputEmail] = useState("default@email.com");

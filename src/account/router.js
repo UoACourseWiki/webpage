@@ -1,8 +1,12 @@
-import react from "react";
+import React from "react";
 import Login from "./Login.js";
 
-function init() {
-  return <Login />;
+import { UserContextProvider, UserContext } from "../subject/UserContext";
+
+function Init() {
+    return <UserContextProvider>
+        <Login />
+    </UserContextProvider>;
 }
 
-export { init };
+export { Init as init };
