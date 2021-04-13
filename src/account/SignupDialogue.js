@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Modal, Button } from "@material-ui/core";
 
 const SignupDialogue = (props) => {
-    // console.log("I'm called!");
     const [userInputEmail, setUserInputEmail] = useState("default@email.com");
     const [userInputPassword, setUserInputPassword] = useState("password");
 
@@ -19,18 +18,8 @@ const SignupDialogue = (props) => {
         props.onClose();
     }
 
-    //Following is an temp inline style sheet, please replace with material-ui makeStyle(theme) method
-    const modalContentStyle = {
-        backgroundColor: "#fefefe",
-        margin: "auto",
-        padding: "20px",
-        border: "1px solid #888",
-        width: "80%",
-    }
-
-
-    const modalContent =
-        <div style={modalContentStyle}>
+    return (
+        <div>
             <h2>Sign Up</h2>
             <label>Email</label>
             <input type="text" onChange={e => setUserInputEmail(e.target.value)}></input>
@@ -43,15 +32,6 @@ const SignupDialogue = (props) => {
             <br />
             <Button onClick={handleSubmit}>Sign Up</Button>
         </div>
-
-
-    return (
-        <Modal
-            open={props.open}
-            onClose={props.onClose}
-        >
-            {modalContent}
-        </Modal>
     )
 }
 

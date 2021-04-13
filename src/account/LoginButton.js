@@ -1,22 +1,26 @@
 import { useState } from "react";
 import { Button } from "@material-ui/core";
 import LoginDialogue from "./LoginDialogue";
+import DialogueCointainer from "./DialogueContainer";
 
 const LoginButton = () => {
 
     const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
-        // console.log("onClick is called")
-        setOpen(true)
-    };
+    // const handleOpen = () => {
+    //     // console.log("onClick is called")
+    //     setOpen(true)
+    // };
 
-    const handleClose = () => setOpen(false);
+    // const handleClose = () => setOpen(false);
 
     return (
         <div>
-            <Button onClick={handleOpen}>Login</Button>
-            <LoginDialogue open={open} onClose={handleClose}/>
+            <Button onClick={() => setOpen(true)}>Login</Button>
+            {/* <LoginDialogue open={open} onClose={() => setOpen(false)} /> */}
+            <DialogueCointainer open={open} onClose={() => setOpen(false)}>
+                <LoginDialogue onClose={() => setOpen(false)} />
+            </DialogueCointainer>
         </div>
     )
 }
