@@ -19,6 +19,7 @@ const Login = () => {
 
     const handleLogOutClick = () => {
         setLoginStatus(false);
+        window.location.reload();
     }
 
     const renderWhenNotLogin = () => (

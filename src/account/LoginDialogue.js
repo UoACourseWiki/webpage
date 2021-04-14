@@ -38,7 +38,6 @@ const LoginDialogue = (props) => {
             "password": userInputPassword
         })
             .then((res) => {
-                setErrorMessage("Login successful!")
                 setUser(dummyLogin.user);
                 setLoginStatus(true);
                 setTimeout(() => { props.onClose() }, 2000);
@@ -48,7 +47,7 @@ const LoginDialogue = (props) => {
                 const error = err.response.data.errors;
                 const errorMsg = JSON.stringify(error);
                 setErrorMessage(errorMsg);
-            })
+        })
 
     }
 
