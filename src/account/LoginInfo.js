@@ -7,9 +7,12 @@ export default function LoginInfo(props) {
     //     setUser(dummyLogin)
     // }, [user]);
     const [user] = useContext(UserContext);
-    const userName = user.username;
+    var textBody = <p></p>
+    if (!user.username || user.username.length === 0 ) {
+        textBody = <p>Please login!</p>
+    } else {
+        textBody = <p>Welcome, {user.username} !</p>
+    }
 
-    return <p>
-        Welcome, {userName} !
-    </p>
+    return textBody
 }

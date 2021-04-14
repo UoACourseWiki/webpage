@@ -17,7 +17,6 @@ const LoginButton = () => {
     return (
         <div>
             <Button onClick={() => setOpen(true)}>Login</Button>
-            {/* <LoginDialogue open={open} onClose={() => setOpen(false)} /> */}
             <DialogueCointainer open={open} onClose={() => setOpen(false)}>
                 <LoginDialogue onClose={() => setOpen(false)} />
             </DialogueCointainer>

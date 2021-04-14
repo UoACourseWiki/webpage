@@ -1,13 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
-
-import dummyLogin from "../account/dummyJSON/dummyLogin.json"
+import React, { createContext, useState } from "react";
 
 export const UserContext = createContext();
 
 export const UserContextProvider = (props) => {
 
-    //Set default user as dummy for testing purpose
-    const [user, setUser] = useState(dummyLogin.user);
+    const [user, setUser] = useState({});
 
     return (
         <UserContext.Provider value = {[user, setUser]}>
