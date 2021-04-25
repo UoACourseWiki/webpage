@@ -14,29 +14,32 @@ const loadOptions = async (inputValue, callback) => {
 
   await axios.get(baseURL, { params: searchParams }).then(
     (res) => {
-      var items = parseResBody(res.data);
+      var items = parseSubjectResBody(res.data);
       callback(items);
     },
     (err) => {
       const res = err.response;
-      callback([{ label: "🥺 " + res.statusText, value: res.status }]);
+      const errmsg = "🥺 " + res.statusText;
+      callback([{ label: errmsg, status: res.status }]);
     }
   );
 };
 
 const showCnt = 8;
-function parseResBody(data) {
+const linkPrefix = "/subject";
+const HTTP_OK = 200;
+function parseSubjectResBody(data) {
   return data
     .map((course) => {
       var ctlgNbr = course.catalogNbr;
       var sbjt = course.subject;
 
       var courseKey = sbjt + "-" + ctlgNbr;
-      var link = "/" + courseKey;
+      var linkPath = `${linkPrefix}/${courseKey.toLowerCase()}`;
 
-      return { label: courseKey, value: link };
+      return { label: courseKey, value: linkPath, status: HTTP_OK };
     })
     .slice(0, showCnt);
 }
 
-export { loadOptions };
+export { loadOptions, HTTP_OK };
