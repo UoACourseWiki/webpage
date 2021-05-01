@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { UserContext } from "../subject/UserContext";
+import { UserContext } from "../utils/UserContext";
 
 export default function LoginInfo(props) {
     // To call the setState hook here, useEffect() need to be called as example:
