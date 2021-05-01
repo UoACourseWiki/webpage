@@ -1,12 +1,14 @@
 import styles from "./homepage.module.css";
 import axios from "axios";
 import { useState } from "react";
+import SearchPage from "./search/searchPage";
 
 function Homepage() {
   return (
-    <div className={styles.App}>
-      {/* <LoginButton /> */}
-      <p>Please use your own URL for component test</p>
+    <div>
+      <div className={styles.search}>
+        <SearchPage />
+      </div>
 
       <div>
         <ShowVersion />
