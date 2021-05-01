@@ -4,7 +4,7 @@ import { init as AccountInit } from "./account/router";
 import { init as CommentInit } from "./comment/router";
 import { init as SearchInit } from "./search/router";
 import { init as SettingInit } from "./setting/router";
-import { init as SubjectInit } from "./subject/router";
+import { init as CourseInit } from "./course/router";
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
         <Route path="/setting">
           <SettingInit />
         </Route>
-        <Route path="/subject">
-          <SubjectInit />
+        <Route path="/course">
+          <CourseInit />
         </Route>
 
         <Route path="/">
