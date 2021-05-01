@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { Button } from "@material-ui/core";
 import axios from "axios";
-import { UserContext } from "../subject/UserContext";
-import { LoginContext } from "../subject/LoginContext";
+import { UserContext } from "../utils/UserContext";
+import { LoginContext } from "../utils/LoginContext";
 
 import dummyLogin from "./dummyJSON/dummyLogin.json"
 
