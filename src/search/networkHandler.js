@@ -1,6 +1,6 @@
-import axios from "axios";
+import { axios732 } from "../utils/Macro";
 
-const baseURL = "/Courses";
+const URLPath = "/Courses";
 const quearKey = "search";
 
 const loadOptions = async (inputValue, callback) => {
@@ -12,7 +12,7 @@ const loadOptions = async (inputValue, callback) => {
   const searchParams = {};
   searchParams[quearKey] = inputValue;
 
-  await axios.get(baseURL, { params: searchParams }).then(
+  await axios732.get(URLPath, { params: searchParams }).then(
     (res) => {
       var items = parseSubjectResBody(res.data);
       callback(items);
