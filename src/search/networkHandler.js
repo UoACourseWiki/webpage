@@ -1,7 +1,7 @@
 import { axios732 } from "../utils/Macro";
 
 const URLPath = "/Courses";
-const quearKey = "search";
+const queryKey = "search";
 
 const loadOptions = async (inputValue, callback) => {
   if (!inputValue || inputValue.length === 0) {
@@ -10,7 +10,7 @@ const loadOptions = async (inputValue, callback) => {
 
   // HTTP Request
   const searchParams = {};
-  searchParams[quearKey] = inputValue;
+  searchParams[queryKey] = inputValue;
 
   await axios732.get(URLPath, { params: searchParams }).then(
     (res) => {
