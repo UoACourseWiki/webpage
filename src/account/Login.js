@@ -2,7 +2,7 @@ import { React } from "react";
 
 import LoginInfo from "./LoginInfo";
 import LoginButton from "./LoginButton.js";
-import SignupButton from "./SignupButton.js";
+import SignupButton from "./signup/SignupButton.js";
 
 // import { UserContext } from "../utils/UserContext";
 import { LoginContext } from "../utils/LoginContext";
