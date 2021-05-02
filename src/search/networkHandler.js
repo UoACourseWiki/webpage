@@ -19,7 +19,7 @@ const loadOptions = async (inputValue, callback) => {
     },
     (err) => {
       const res = err.response;
-      const errmsg = "🥺 " + res.statusText;
+      const errmsg = "🥺 " + res.data.title;
       callback([{ label: errmsg, status: res.status }]);
     }
   );
