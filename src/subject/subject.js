@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import { axios732 } from '../utils/Macro';
-import styles from './subject.module.css';
+import SubjectView from './subjectView';
 
 const URLPath = "/Courses";
 const queryKey = "subject";
@@ -10,6 +10,8 @@ const queryKey = "subject";
 export default  function Subject () {
 
     const [courses, setCourses] = useState([])
+    const [resError, setResError] = useState();
+
     function updateCourses (items){
       setCourses([...items]);
     }
@@ -23,21 +25,14 @@ export default  function Subject () {
         (res) => {
           updateCourses(res.data)
         },
-        (err) => {}
+        (err) => {
+          const res = err.response;
+          setResError(res);
+        }
    
       )}, []);
 
-    return <SubjectView  courses={courses} />
+    return <SubjectView  courses={courses} error={resError} />
 }
-function SubjectView({courses}){
-    return (<div>
-      <p className={styles.p}>All courses</p>
-      {courses.map((c,i)=>(
-    <button className={styles.subject} key={i} >
-      <div className={styles.title}>{c.subject} {  }
-      {c.catalogNbr} </div>
-      <div>{c.title}</div>
-      </button>
-    
-    ) )}</div>  )
-}
+
+
