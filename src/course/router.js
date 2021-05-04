@@ -1,6 +1,7 @@
+import CoursePage from "./coursePage";
+
 function init() {
-  const path = "/replace/with/your/module's/router/Here~";
-  return <h2>🤗 {path}</h2>;
+    return <CoursePage/>;
 }
 
-export { init };
+export {init};
