@@ -5,7 +5,7 @@ let em = "email";
 let pd = "password";
 let cpd = "confirmPassword";
 
-const SignupDialogue = (updateInfo, handleSubmit) => {
+const SignupDialogue = ({ updateInfo, handleSubmit }) => {
   return (
     <div>
       <h2>Sign Up</h2>

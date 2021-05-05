@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { resigter, HTTP_OK } from "./registerHandler";
 import SignupDialogue from "./signupDialogue";
+import SuccessDialogue from "./successDialogue";
 
-export default function SignUp() {
+export default function SignUp(props) {
   const [user, setUser] = useState({});
 
   function updateUser(field) {
     setUser({ ...user, ...field });
   }
 
+  // request hand handle result
+  const [openSuccessDia, setOpenSuccessDia] = useState(false);
+
   function signupCallback(status, errmsg) {
     if (status === HTTP_OK) {
-      // successfully
+      setOpenSuccessDia(true);
     }
   }
 
@@ -19,5 +23,19 @@ export default function SignUp() {
     resigter(user, signupCallback);
   };
 
-  return SignupDialogue(updateUser, handleSubmit);
+  return (
+    <>
+      <SignupDialogue
+        updateInfo={updateUser}
+        handleSubmit={handleSubmit}
+      ></SignupDialogue>
+      <SuccessDialogue
+        open={openSuccessDia}
+        handleClose={() => {
+          props.onClose();
+          setOpenSuccessDia(false);
+        }}
+      />
+    </>
+  );
 }

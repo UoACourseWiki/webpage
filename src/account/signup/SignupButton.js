@@ -9,9 +9,8 @@ const SignupButton = () => {
   return (
     <div>
       <Button onClick={() => setOpen(true)}>Sign Up</Button>
-      {/* <SignupDialogue open={open} onClose={() => setOpen(false)} /> */}
       <DialogueCointainer open={open} onClose={() => setOpen(false)}>
-        <SignUp />
+        <SignUp onClose={() => setOpen(false)} />
       </DialogueCointainer>
     </div>
   );
