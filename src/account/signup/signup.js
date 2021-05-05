@@ -1,5 +1,5 @@
 import { useState } from "react";
-import resigter from "./registerHandler";
+import { resigter, HTTP_OK } from "./registerHandler";
 import SignupDialogue from "./signupDialogue";
 
 export default function SignUp() {
@@ -9,10 +9,14 @@ export default function SignUp() {
     setUser({ ...user, ...field });
   }
 
-  function callback(status, errmsg) {}
+  function signupCallback(status, errmsg) {
+    if (status === HTTP_OK) {
+      // successfully
+    }
+  }
 
   const handleSubmit = () => {
-    resigter(user, callback);
+    resigter(user, signupCallback);
   };
 
   return SignupDialogue(updateUser, handleSubmit);

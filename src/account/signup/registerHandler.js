@@ -1,9 +1,8 @@
-import { axios732 } from "../../utils/Macro";
+import { axios732, HTTP_OK } from "../../utils/Macro";
 
 const APIPath = "Users/register";
 const at = "acceptTerms"; // always true
 
-const HTTP_OK = 200;
 const resigter = (user, callback) => {
   var body = user;
   body[at] = true;
@@ -20,4 +19,4 @@ const resigter = (user, callback) => {
   );
 };
 
-export default resigter;
+export { resigter, HTTP_OK };
