@@ -23,6 +23,7 @@ export default function SignUp(props) {
     setError(errmsg);
   }
 
+  // sign up dialogue
   const handleSubmit = () => {
     resigter(user, signupCallback);
   };
