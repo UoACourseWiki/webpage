@@ -5,7 +5,7 @@ let em = "email";
 let pd = "password";
 let cpd = "confirmPassword";
 
-const SignupDialogue = ({ updateInfo, handleSubmit }) => {
+const SignupDialogue = ({ updateInfo, handleSubmit, error }) => {
   return (
     <div>
       <h2>Sign Up</h2>
@@ -33,7 +33,7 @@ const SignupDialogue = ({ updateInfo, handleSubmit }) => {
         onChange={(e) => updateInfo({ [cpd]: e.target.value })}
       ></input>
       <br />
-      {/* <p>{errorMessage}</p> */}
+      <p style={{ color: "red" }}>{error}</p>
       <Button onClick={handleSubmit}>Sign Up</Button>
     </div>
   );

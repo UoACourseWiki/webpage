@@ -12,11 +12,15 @@ export default function SignUp(props) {
 
   // request hand handle result
   const [openSuccessDia, setOpenSuccessDia] = useState(false);
+  const [error, setError] = useState("");
 
   function signupCallback(status, errmsg) {
     if (status === HTTP_OK) {
       setOpenSuccessDia(true);
+      return;
     }
+
+    setError(errmsg);
   }
 
   const handleSubmit = () => {
@@ -28,6 +32,7 @@ export default function SignUp(props) {
       <SignupDialogue
         updateInfo={updateUser}
         handleSubmit={handleSubmit}
+        error={error}
       ></SignupDialogue>
       <SuccessDialogue
         open={openSuccessDia}
