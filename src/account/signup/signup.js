@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { resigter, HTTP_OK } from "./registerHandler";
+import { resigter, HTTP_OK } from "./register";
 import SignupDialogue from "./signupDialogue";
 import SuccessDialogue from "./successDialogue";
 
