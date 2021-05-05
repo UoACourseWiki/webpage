@@ -1,4 +1,4 @@
-import { axios732 } from "../utils/Macro";
+import { axios732, HTTP_OK } from "../utils/Macro";
 
 const URLPath = "/Courses";
 const queryKey = "search";
@@ -27,7 +27,6 @@ const loadOptions = async (inputValue, callback) => {
 
 const showCnt = 8;
 const linkPrefix = "/course";
-const HTTP_OK = 200;
 function parseSubjectResBody(data) {
   return data
     .map((course) => {
