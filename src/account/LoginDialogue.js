@@ -8,7 +8,7 @@ const LoginDialogue = (props) => {
     const [userInputEmail, setUserInputEmail] = useState("");
     const [userInputPassword, setUserInputPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [setCookie] = useCookies("user");
+    const [, setCookie] = useCookies("user");
 
     const APIpathAuth = "/Users/authenticate";
     //   "email": "ericzh718@gmail.com",
