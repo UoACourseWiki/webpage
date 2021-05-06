@@ -17,14 +17,13 @@ const Login = () => {
         window.location.reload();
     }
 
-    const readCookie = () => {
-        console.log(typeof cookies.user)
-        if (cookies.user !== undefined){
-            setAuth(true);
-        }
-    }
-
     useEffect(() => {
+        const readCookie = () => {
+            // console.log(typeof cookies.user)
+            if (cookies.user !== undefined){
+                setAuth(true);
+            }
+        }
         readCookie();
     }, [])
 

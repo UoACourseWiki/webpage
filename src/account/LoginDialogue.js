@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@material-ui/core";
 import { axios732 } from "../utils/Macro";
+import SignupButton from "./signup/SignupButton.js";
 import { useCookies, withCookies } from "react-cookie";
 
 const LoginDialogue = (props) => {
@@ -29,6 +30,7 @@ const LoginDialogue = (props) => {
             .catch((err) => {
                 const errorMsg = "Login Failed! Please check your Email or Password";
                 setErrorMessage(errorMsg);
+                console.log("this is error:" + err.data)
             })
 
     }
@@ -43,7 +45,7 @@ const LoginDialogue = (props) => {
             <input type="text" onChange={e => setUserInputPassword(e.target.value)}></input>
             <br />
             <p>{errorMessage}</p>
-            <p>Do not have an account yet?</p>
+            <p>Do not have an account yet?<SignupButton /></p>
             <p>Forget your password?</p>
             <Button onClick={handleSubmit}>Login</Button>
         </div>

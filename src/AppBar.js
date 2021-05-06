@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AppBar, Toolbar, IconButton, Menu, MenuList, MenuItem } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 import SearchPage from "./search/searchPage";
@@ -48,7 +48,7 @@ export default function PrimarySearchAppBar() {
 }
 
 const AccountMenu = ({ isMenuOpen, closeMenu }) => {
-  const [cookies, setCookie ,removeCookie] = useCookies(["user"])
+  const [cookies, ,removeCookie] = useCookies(["user"])
   const history = useHistory();
 
   function handleClickProfile() {
