@@ -1,12 +1,9 @@
 import { Switch, Route, useHistory } from "react-router-dom";
 import Login from "./Login.js";
-import LoginPage from "./LoginPage.js";
+// import LoginPage from "./LoginPage.js";
 import SignUp from "./signup/signup";
-import Loginbutton from "./LoginButton.js"
 import { Button, makeStyles } from "@material-ui/core";
 
-import { UserContextProvider } from "../utils/UserContext";
-import { LoginContextProvider } from "../utils/LoginContext.js";
 import { signupPath, loginPath } from "../utils/URLPath";
 
 function Init() {
@@ -32,12 +29,8 @@ function Init() {
                 <SignUp />
             </Route>
             <Route path={loginPath}>
-                <LoginContextProvider>
-                    <UserContextProvider>
                         <Login />
                         {/* <LoginPage /> */}
-                    </UserContextProvider>
-                </LoginContextProvider>
             </Route>
             <Route path="/">
                 <div className={classes.container}>

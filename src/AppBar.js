@@ -6,7 +6,7 @@ import SearchPage from "./search/searchPage";
 import styles from "./AppBar.module.css";
 import { profilePath } from "./utils/URLPath";
 import { useHistory } from "react-router";
-import { Cookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import LoginButton from "./account/LoginButton";
 
 export default function PrimarySearchAppBar() {
@@ -60,25 +60,6 @@ const AccountMenu = ({ isMenuOpen, closeMenu }) => {
     removeCookie("user", { path: "/"});
     window.location.reload();
   }
-
-  // const menuNoLogin =   <Menu
-  //                         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-  //                         transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //                         open={isMenuOpen}
-  //                         onClose={closeMenu}
-  //                       > <LoginButton />
-  //                       </Menu>
-  // const menuLogin = <Menu
-  //                     anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-  //                     transformOrigin={{ vertical: "top", horizontal: "right" }}
-  //                     open={isMenuOpen}
-  //                     onClose={closeMenu}
-  //                     >
-  //                       <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
-  //                       <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
-  //                   </Menu>
-
-  // const dropMenu = () => cookies.user !== undefined ? menuLogin : menuNoLogin
   
 
   return (
