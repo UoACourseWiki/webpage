@@ -37,8 +37,7 @@ export default function SignUp(props) {
       ></SignupPage>
       <SuccessDialogue
         open={openSuccessDia}
-        handleClose={() => {
-          props.onClose();
+        close={() => {
           setOpenSuccessDia(false);
         }}
       />

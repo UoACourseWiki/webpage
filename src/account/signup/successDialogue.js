@@ -11,14 +11,18 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function SuccessDialogue({ open, handleClose }) {
+export default function SuccessDialogue({ open, close }) {
+  function handleClose(params) {
+    close();
+  }
+
   return (
     <div>
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={close}
       >
         <DialogTitle id="signup-success-dialogue-title">
           {"🤗 Registered!"}
