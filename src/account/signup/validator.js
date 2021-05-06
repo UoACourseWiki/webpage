@@ -7,26 +7,25 @@ const validEmail = (email) => {
 };
 
 const validPassword = (passwd, miniLength) => {
-  // Validate lowercase letters
-  const lowerCaseLetters = new RegExp(/[a-z]/g);
-  var ltr = lowerCaseLetters.test(passwd);
-
-  // Validate capital letters
-  const upperCaseLetters = new RegExp(/[A-Z]/g);
-  var uclr = upperCaseLetters.test(passwd);
+  // Validate lowercase & uppercase letters
+  const letters = new RegExp(/[a-z].*[A-Z]|[A-Z].*[a-z]/g);
+  var ltr = letters.test(passwd);
 
   // Validate numbers
   const numbers = new RegExp(/[0-9]/g);
   var nbr = numbers.test(passwd);
 
+  const symbol = new RegExp(/[\p{P}]/u);
+  var smb = symbol.test(passwd);
+
   var lgth = passwd.length >= miniLength;
 
   var result = {
     letter: ltr,
-    capital: uclr,
     number: nbr,
+    symbol: smb,
     length: lgth,
-    final: Boolean(ltr & uclr & nbr & lgth),
+    final: Boolean(ltr & nbr & lgth),
   };
 
   return result;

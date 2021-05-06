@@ -102,13 +102,13 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const [validation, setValidation] = useState({ final: true });
-  function updateValidation(filed) {
-    setValidation({ ...validation, ...filed });
+  const [conditions, setConditions] = useState({ final: true });
+  function updateCondition(c) {
+    setConditions({ ...conditions, ...c });
   }
 
   function handleRepeatInput(same) {
-    var vfinal = Boolean(validation.final & same);
+    var vfinal = Boolean(conditions.final & same);
     enableSubmit({ pd: vfinal });
 
     if (vfinal) {
@@ -120,7 +120,7 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
     var passwd = e.target.value;
     var v = validPassword(passwd, miniLength);
 
-    updateValidation(v);
+    updateCondition(v);
     setPassword(passwd);
   }
 
@@ -131,7 +131,7 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
         id="outlined-adornment-password"
         type={showPassword ? "text" : "password"}
         onChange={handlePasdChange}
-        error={!validation.final}
+        error={!conditions.final}
         endAdornment={
           <InputAdornment position="end">
             <IconButton
@@ -150,25 +150,25 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
 
         <p
           id="length"
-          className={validation.length ? styles.pdValid : styles.pdInvalid}
+          className={conditions.length ? styles.pdValid : styles.pdInvalid}
         >
           Minimum <b>{miniLength} characters</b>
         </p>
         <p
           id="letter"
-          className={validation.letter ? styles.pdValid : styles.pdInvalid}
+          className={conditions.letter ? styles.pdValid : styles.pdInvalid}
         >
-          A <b>lowercase</b> letter
+          <b>Lowercase </b> & <b> Capital (Uppercase) </b> letters
         </p>
         <p
-          id="capital"
-          className={validation.capital ? styles.pdValid : styles.pdInvalid}
+          id="symbol"
+          className={conditions.symbol ? styles.pdValid : styles.pdInvalid}
         >
-          A <b>capital (uppercase)</b> letter
+          A <b>symbol</b> letter
         </p>
         <p
           id="number"
-          className={validation.number ? styles.pdValid : styles.pdInvalid}
+          className={conditions.number ? styles.pdValid : styles.pdInvalid}
         >
           A <b>number</b>
         </p>
