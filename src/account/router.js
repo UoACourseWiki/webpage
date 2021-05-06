@@ -5,9 +5,7 @@ import { Button, makeStyles } from "@material-ui/core";
 
 import { UserContextProvider } from "../utils/UserContext";
 import { LoginContextProvider } from "../utils/LoginContext.js";
-
-const signupPath = "/account/signup";
-const loginPath = "/account/login";
+import { signupPath, loginPath } from "../utils/URLPath";
 
 function Init() {
   const history = useHistory();
