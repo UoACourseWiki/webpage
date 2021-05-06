@@ -5,6 +5,7 @@ import { init as CommentInit } from "./comment/router";
 import { init as SearchInit } from "./search/router";
 import { init as SettingInit } from "./setting/router";
 import { init as CourseInit } from "./course/router";
+import Subject from './subject/subject';
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
         </Route>
         <Route path="/course">
           <CourseInit />
+        </Route>
+
+        <Route path="/subject/:subject">
+          <Subject />
         </Route>
 
         <Route path="/">
