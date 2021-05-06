@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { resigter, HTTP_OK } from "./register";
-import SignupDialogue from "./signupDialogue";
+import SignupPage from "./signupPage";
 import SuccessDialogue from "./successDialogue";
 
 export default function SignUp(props) {
@@ -30,11 +30,11 @@ export default function SignUp(props) {
 
   return (
     <>
-      <SignupDialogue
+      <SignupPage
         updateInfo={updateUser}
         handleSubmit={handleSubmit}
         error={error}
-      ></SignupDialogue>
+      ></SignupPage>
       <SuccessDialogue
         open={openSuccessDia}
         handleClose={() => {
