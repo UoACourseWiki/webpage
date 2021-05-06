@@ -8,18 +8,18 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import styles from "./signupDialogue.module.css";
+import styles from "./signupPage.module.css";
 
 import { useState } from "react";
 import { validEmail, validPassword } from "./validator";
 
-const SignupDialogue = ({ updateInfo, handleSubmit, error }) => {
+const SignupPage = ({ updateInfo, handleSubmit, error }) => {
   const [enableSubmit, setEnableSubmit] = useState(false);
 
   const [validInputs, setValidInputs] = useState({ em: false, pd: false });
   function updateInputsValid(field) {
     var result = { ...validInputs, ...field };
-    
+
     setValidInputs(result);
     setEnableSubmit(Boolean(result.em & result.pd));
   }
@@ -204,4 +204,4 @@ const RepeatPassowrdInputText = ({ initPassword, onSame }) => {
   );
 };
 
-export default SignupDialogue;
+export default SignupPage;
