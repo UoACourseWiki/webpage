@@ -7,18 +7,28 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 
+import { loginPath } from "../../utils/URLPath";
+import { useHistory } from "react-router-dom";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function SuccessDialogue({ open, handleClose }) {
+export default function SuccessDialogue({ open, close }) {
+  const history = useHistory();
+
+  function redirectToLogin() {
+    history.push(loginPath);
+    close();
+  }
+
   return (
     <div>
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={close}
       >
         <DialogTitle id="signup-success-dialogue-title">
           {"🤗 Registered!"}
@@ -29,10 +39,7 @@ export default function SuccessDialogue({ open, handleClose }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={redirectToLogin} color="primary">
             Login
           </Button>
         </DialogActions>
