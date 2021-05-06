@@ -25,14 +25,17 @@ const SignupPage = ({ updateInfo, handleSubmit, error }) => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Sign Up</h2>
 
       <label>Your Nick Name</label>
-      <input
-        type="text"
+      <br />
+      <TextField
+        variant="outlined"
         onChange={(e) => updateInfo({ nm: e.target.value })}
-      ></input>
+      />
+      <br />
+      <label>Email</label>
       <br />
       <EmailInputText
         updateInfo={updateInfo}
@@ -40,6 +43,8 @@ const SignupPage = ({ updateInfo, handleSubmit, error }) => {
           updateInputsValid(valid);
         }}
       />
+      <br />
+      <label>Password</label>
       <br />
       <PasswordInputText
         updateInfo={updateInfo}
@@ -50,6 +55,7 @@ const SignupPage = ({ updateInfo, handleSubmit, error }) => {
       <br />
 
       <p style={{ color: "red" }}>{error}</p>
+
       <Button disabled={!enableSubmit} onClick={handleSubmit}>
         Sign Up
       </Button>
@@ -80,7 +86,6 @@ const EmailInputText = ({ updateInfo, enableSubmit }) => {
   return (
     <TextField
       variant="outlined"
-      label="Email"
       value={email}
       error={!emailValid}
       onBlur={handleEmailBlur}
@@ -121,7 +126,7 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
 
   return (
     <FormControl variant="outlined">
-      <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+      <InputLabel htmlFor="outlined-adornment-password"></InputLabel>
       <OutlinedInput
         id="outlined-adornment-password"
         type={showPassword ? "text" : "password"}
@@ -168,6 +173,8 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
           A <b>number</b>
         </p>
       </div>
+      <label>Repeat password</label>
+      <br />
       <RepeatPassowrdInputText
         initPassword={password}
         onSame={handleRepeatInput}
@@ -195,7 +202,6 @@ const RepeatPassowrdInputText = ({ initPassword, onSame }) => {
     <TextField
       type="password"
       variant="outlined"
-      label="Repeat password"
       value={rPasd}
       error={!same}
       onChange={handleChange}
