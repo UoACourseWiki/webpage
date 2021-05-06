@@ -7,12 +7,18 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 
+import { loginPath } from "../../utils/URLPath";
+import { useHistory } from "react-router-dom";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
 export default function SuccessDialogue({ open, close }) {
-  function handleClose(params) {
+  const history = useHistory();
+
+  function redirectToLogin() {
+    history.push(loginPath);
     close();
   }
 
@@ -33,10 +39,7 @@ export default function SuccessDialogue({ open, close }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={redirectToLogin} color="primary">
             Login
           </Button>
         </DialogActions>
