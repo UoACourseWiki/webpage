@@ -5,11 +5,17 @@ import { init as CommentInit } from "./comment/router";
 import { init as SearchInit } from "./search/router";
 import { init as SettingInit } from "./setting/router";
 import { init as CourseInit } from "./course/router";
-import Subject from './subject/subject';
+import Subject from "./subject/subject";
+import PrimarySearchAppBar from "./AppBar";
+import { useState } from "react";
 
 function App() {
+  const [isHome, setIsHome] = useState(true);
+
   return (
     <div>
+      <PrimarySearchAppBar />
+
       <Switch>
         <Route path="/account">
           <AccountInit />
