@@ -19,6 +19,7 @@ const SignupDialogue = ({ updateInfo, handleSubmit, error }) => {
   const [validInputs, setValidInputs] = useState({ em: false, pd: false });
   function updateInputsValid(field) {
     var result = { ...validInputs, ...field };
+    
     setValidInputs(result);
     setEnableSubmit(Boolean(result.em & result.pd));
   }
@@ -47,12 +48,7 @@ const SignupDialogue = ({ updateInfo, handleSubmit, error }) => {
         }}
       />
       <br />
-      <label>Re-enter Password</label>
-      <input
-        type="text"
-        onChange={(e) => updateInfo({ cpd: e.target.value })}
-      ></input>
-      <br />
+
       <p style={{ color: "red" }}>{error}</p>
       <Button disabled={!enableSubmit} onClick={handleSubmit}>
         Sign Up
@@ -106,18 +102,22 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
     setValidation({ ...validation, ...filed });
   }
 
-  const handlePasdChange = (e) => {
-    var input = e.target.value;
-    var result = validPassword(input, miniLength);
+  function handleRepeatInput(same) {
+    var vfinal = Boolean(validation.final & same);
+    enableSubmit({ pd: vfinal });
 
-    updateValidation(result);
-    enableSubmit({ pd: result.final });
-
-    if (result.final) {
-      setPassword(input);
-      updateInfo({ pd: input });
+    if (vfinal) {
+      updateInfo({ pd: password, cpd: password });
     }
-  };
+  }
+
+  function handlePasdChange(e) {
+    var passwd = e.target.value;
+    var v = validPassword(passwd, miniLength);
+
+    updateValidation(v);
+    setPassword(passwd);
+  }
 
   return (
     <FormControl variant="outlined">
@@ -168,7 +168,39 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
           A <b>number</b>
         </p>
       </div>
+      <RepeatPassowrdInputText
+        initPassword={password}
+        onSame={handleRepeatInput}
+      />
     </FormControl>
+  );
+};
+
+const RepeatPassowrdInputText = ({ initPassword, onSame }) => {
+  const [rPasd, setRpasd] = useState("");
+  const [same, setSame] = useState(true);
+  const [htxt, setHtxt] = useState("");
+
+  const handleChange = (e) => {
+    var input = e.target.value;
+    var v = initPassword === input;
+
+    setRpasd(input);
+    setSame(v);
+    setHtxt(v ? "" : "password mismatch");
+    onSame(v);
+  };
+
+  return (
+    <TextField
+      type="password"
+      variant="outlined"
+      label="Repeat password"
+      value={rPasd}
+      error={!same}
+      onChange={handleChange}
+      helperText={htxt}
+    />
   );
 };
 

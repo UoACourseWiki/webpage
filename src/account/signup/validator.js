@@ -6,20 +6,20 @@ const validEmail = (email) => {
   return pattern.test(email);
 };
 
-const validPassword = (input, miniLength) => {
+const validPassword = (passwd, miniLength) => {
   // Validate lowercase letters
   const lowerCaseLetters = new RegExp(/[a-z]/g);
-  var ltr = lowerCaseLetters.test(input);
+  var ltr = lowerCaseLetters.test(passwd);
 
   // Validate capital letters
   const upperCaseLetters = new RegExp(/[A-Z]/g);
-  var uclr = upperCaseLetters.test(input);
+  var uclr = upperCaseLetters.test(passwd);
 
   // Validate numbers
   const numbers = new RegExp(/[0-9]/g);
-  var nbr = numbers.test(input);
+  var nbr = numbers.test(passwd);
 
-  var lgth = input.length >= miniLength;
+  var lgth = passwd.length >= miniLength;
 
   var result = {
     letter: ltr,
