@@ -7,14 +7,15 @@ const validEmail = (email) => {
 };
 
 const validPassword = (passwd, miniLength) => {
-  // Validate lowercase & uppercase letters
+  // validate lowercase & uppercase letters
   const letters = new RegExp(/[a-z].*[A-Z]|[A-Z].*[a-z]/g);
   var ltr = letters.test(passwd);
 
-  // Validate numbers
+  // validate numbers
   const numbers = new RegExp(/[0-9]/g);
   var nbr = numbers.test(passwd);
 
+  // validate symbol
   const symbol = new RegExp(/[\p{P}]/u);
   var smb = symbol.test(passwd);
 

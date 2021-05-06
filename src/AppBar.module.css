@@ -1,0 +1,8 @@
+.grow {
+  flex-grow: 1;
+}
+
+.search {
+  margin-left: 5%;
+  width: 25%;
+}
