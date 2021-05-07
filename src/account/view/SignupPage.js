@@ -20,9 +20,8 @@ import { useState } from "react";
 import { validEmail, validPassword } from "./validator";
 import { Copyright } from "../../utils/ViewComponent";
 
-const SignupPage = ({ updateInfo, submit }) => {
+const SignupPage = ({ updateInfo, isWaiting, submit }) => {
   const [enableSubmit, setEnableSubmit] = useState(false);
-  const [isWaiting, SetIsWaiting] = useState(false);
 
   const [validInputs, setValidInputs] = useState({
     em: false,

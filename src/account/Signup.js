@@ -13,6 +13,7 @@ export default function SignUp(props) {
   }
 
   // request and handle result
+  const [waiting, setWaiting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const successMsg = "🤗 Registered!";
 
@@ -20,9 +21,13 @@ export default function SignUp(props) {
   const [error, setError] = useState("");
 
   const handleSubmit = () => {
+    setWaiting(true);
+
     resigter(user, (status, errmsg) => {
+      setWaiting(false);
+
       if (status === HTTP_OK) {
-        setShowSuccess(true);
+        setWaiting(true);
       } else {
         setShowFail(true);
         setError(errmsg);
@@ -42,7 +47,11 @@ export default function SignUp(props) {
 
   return (
     <>
-      <SignupPage updateInfo={updateUser} submit={handleSubmit} />
+      <SignupPage
+        updateInfo={updateUser}
+        submit={handleSubmit}
+        isWaiting={waiting}
+      />
       <SuccessBar
         open={showSuccess}
         onClick={handleSuccess}
