@@ -72,10 +72,10 @@ export default function Login() {
       />
       <SuccessBar
         open={showSuccess}
-        onClick={handleSuccessBar}
+        clickClose={handleSuccessBar}
         message={successMsg}
       />
-      <FailBar open={showFail} onClick={handleFailureBar} message={error} />
+      <FailBar open={showFail} clickClose={handleFailureBar} message={error} />
     </>
   );
 }

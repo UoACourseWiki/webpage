@@ -55,10 +55,14 @@ export default function ResetPassowrd() {
       />
       <SuccessBar
         open={showSuccess}
-        onClick={handleSuccessBar}
+        clickClose={handleSuccessBar}
         message={successMsg}
       />
-      <FailBar open={showFail} onClick={handleFailureBar} message={failMsg} />
+      <FailBar
+        open={showFail}
+        clickClose={handleFailureBar}
+        message={failMsg}
+      />
     </>
   );
 }
