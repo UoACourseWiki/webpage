@@ -1,7 +1,6 @@
 import { Switch, Route, useHistory } from "react-router-dom";
 import Login from "./Login.js";
-// import LoginPage from "./LoginPage.js";
-import SignUp from "./signup/signup";
+import SignUp from "./Signup";
 import { Button, makeStyles } from "@material-ui/core";
 
 import { signupPath, loginPath } from "../utils/URLPath";

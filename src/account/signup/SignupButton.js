@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@material-ui/core";
-import SignUp from "./signup";
+import SignUp from "../Signup";
 import DialogueCointainer from "../DialogueContainer";
 
 const SignupButton = () => {
