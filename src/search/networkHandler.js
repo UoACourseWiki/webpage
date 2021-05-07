@@ -1,6 +1,6 @@
 import { axios732, HTTP_OK } from "../utils/Macro";
 
-const URLPath = "/Courses";
+const APIPath = "/Courses";
 const queryKey = "search";
 
 const loadOptions = async (inputValue, callback) => {
@@ -12,7 +12,7 @@ const loadOptions = async (inputValue, callback) => {
   const searchParams = {};
   searchParams[queryKey] = inputValue;
 
-  await axios732.get(URLPath, { params: searchParams }).then(
+  await axios732.get(APIPath, { params: searchParams }).then(
     (res) => {
       var items = parseSubjectResBody(res.data);
       callback(items);
@@ -34,7 +34,7 @@ function parseSubjectResBody(data) {
       var sbjt = course.subject;
 
       var courseKey = sbjt + "-" + ctlgNbr;
-      var linkPath = `${linkPrefix}/${courseKey.toLowerCase()}`;
+      var linkPath = `${linkPrefix}/${sbjt}/${ctlgNbr}`;
 
       return { label: courseKey, value: linkPath, status: HTTP_OK };
     })
