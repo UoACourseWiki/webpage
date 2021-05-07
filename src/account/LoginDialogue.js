@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { axios732 } from "../utils/Macro";
-import SignupButton from "./signup/SignupButton.js";
 import { useCookies, withCookies } from "react-cookie";
+
+import { signupPath } from "../utils/URLPath";
 
 const LoginDialogue = (props) => {
     const [userInputEmail, setUserInputEmail] = useState("");
     const [userInputPassword, setUserInputPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [, setCookie] = useCookies("user");
+
+    const history = useHistory();
 
     const APIpathAuth = "/Users/authenticate";
     //   "email": "ericzh718@gmail.com",
@@ -45,7 +49,13 @@ const LoginDialogue = (props) => {
             <input type="text" onChange={e => setUserInputPassword(e.target.value)}></input>
             <br />
             <p>{errorMessage}</p>
-            <p>Do not have an account yet?<SignupButton /></p>
+            <p>Do not have an account yet?<Button
+                        onClick={() => {
+                            history.push(signupPath);
+                        }}
+                    >
+                        Sign Up
+          </Button></p>
             <p>Forget your password?</p>
             <Button onClick={handleSubmit}>Login</Button>
         </div>

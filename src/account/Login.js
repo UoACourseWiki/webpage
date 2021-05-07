@@ -2,7 +2,6 @@ import { React, useEffect, useState } from "react";
 
 import LoginInfo from "./LoginInfo";
 import LoginButton from "./LoginButton.js";
-import SignupButton from "./signup/SignupButton.js";
 import { Button } from "@material-ui/core";
 import { useCookies, withCookies } from "react-cookie";
 
@@ -35,7 +34,6 @@ const Login = () => {
         }}>
             <span><p>Please Login</p></span>
             <span><LoginButton /></span>
-            <span><SignupButton /></span>
         </div>
     )
 
