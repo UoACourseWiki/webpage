@@ -1,6 +1,6 @@
 import { Switch, Route, useHistory } from "react-router-dom";
 import Login from "./Login.js";
-// import LoginPage from "./LoginPage.js";
+import LoginPage from "./LoginPage.js";
 import SignUp from "./signup/signup";
 import { Button, makeStyles } from "@material-ui/core";
 
@@ -29,8 +29,8 @@ function Init() {
                 <SignUp />
             </Route>
             <Route path={loginPath}>
-                        <Login />
-                        {/* <LoginPage /> */}
+                        {/* <Login /> */}
+                        <LoginPage />
             </Route>
             <Route path="/">
                 <div className={classes.container}>
