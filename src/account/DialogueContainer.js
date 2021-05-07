@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Modal } from "@material-ui/core";
 
 const DialogueCointainer = (props) => {
