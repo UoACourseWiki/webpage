@@ -1,11 +1,11 @@
 import { Switch, Route } from "react-router-dom";
 import { Homepage } from "./homepage";
 import { init as AccountInit } from "./account/router";
-import { init as CommentInit } from "./comment/router";
 import { init as SettingInit } from "./setting/router";
 import { init as CourseInit } from "./course/router";
 import Subject from "./subject/subject";
 import PrimarySearchAppBar from "./AppBar";
+import { accountPath, coursePath, profilePath } from "./utils/URLPath";
 
 function App() {
   return (
@@ -13,16 +13,13 @@ function App() {
       <PrimarySearchAppBar />
 
       <Switch>
-        <Route path="/account">
+        <Route path={accountPath}>
           <AccountInit />
         </Route>
-        <Route path="/comment">
-          <CommentInit />
-        </Route>
-        <Route path="/setting">
+        <Route path={profilePath}>
           <SettingInit />
         </Route>
-        <Route path="/course">
+        <Route path={coursePath}>
           <CourseInit />
         </Route>
 
