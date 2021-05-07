@@ -20,6 +20,10 @@ export default function SearchPage() {
 
         history.push(item.value);
       }}
+      components={{
+        DropdownIndicator: () => null,
+        IndicatorSeparator: () => null,
+      }}
     />
   );
 }
