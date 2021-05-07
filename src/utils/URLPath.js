@@ -3,9 +3,18 @@ const accountPath = "/account";
 const signupPath = "/account/join";
 const loginPath = "/account/login";
 
-const coursePath = "/course";
+const coursePathPrefix = "/course";
+const subjectPath = "/course/:subject";
+const coursePath = "/course/:subject/:courseId";
+
 const profilePath = "/setting";
 
-// API Path
-
-export { signupPath, loginPath, accountPath, coursePath, profilePath };
+export {
+  signupPath,
+  loginPath,
+  accountPath,
+  coursePathPrefix,
+  coursePath,
+  subjectPath,
+  profilePath,
+};

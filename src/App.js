@@ -4,9 +4,8 @@ import { Homepage } from "./homepage";
 import { init as AccountInit } from "./account/router";
 import { init as SettingInit } from "./setting/router";
 import { init as CourseInit } from "./course/router";
-import Subject from "./subject/subject";
 import PrimarySearchAppBar from "./AppBar";
-import { accountPath, coursePath, profilePath } from "./utils/URLPath";
+import { accountPath, coursePathPrefix, profilePath } from "./utils/URLPath";
 
 function App() {
   return (
@@ -20,12 +19,8 @@ function App() {
         <Route path={profilePath}>
           <SettingInit />
         </Route>
-        <Route path={coursePath}>
+        <Route path={coursePathPrefix}>
           <CourseInit />
-        </Route>
-
-        <Route path="/subject/:subject">
-          <Subject />
         </Route>
 
         <Route path="/">
