@@ -1,54 +1,81 @@
-import { React, useEffect, useState } from "react";
+import LoginPage from "./view/LoginPage";
+import { useState } from "react";
+import { SuccessBar, FailBar } from "./view/ResultBar";
+import { useHistory } from "react-router-dom";
+import { axios732 } from "../utils/Macro";
+import { useCookies } from "react-cookie";
 
-import LoginInfo from "./LoginInfo";
-import LoginButton from "./LoginButton.js";
-import { Button } from "@material-ui/core";
-import { useCookies, withCookies } from "react-cookie";
+const APIURL = "/Users/authenticate";
+const bodyKeys = {
+  em: "email",
+  pd: "password",
+};
 
+export default function Login() {
+  const [user, setUser] = useState({});
 
-const Login = () => {
+  function updateUser(field) {
+    setUser({ ...user, ...field });
+  }
 
-    const [cookies, , removeCookie] = useCookies();
-    const [auth, setAuth] = useState(false);
+  const [, setCookie] = useCookies("user");
 
-    const handleLogOutClick = () => {
-        removeCookie("user", { path: "/"});
-        window.location.reload();
-    }
+  // HTTP request
+  const [waiting, setWaiting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const successMsg = "🤗 Registered!";
 
-    useEffect(() => {
-        const readCookie = () => {
-            // console.log(typeof cookies.user)
-            if (cookies.user !== undefined){
-                setAuth(true);
-            }
-        }
-        readCookie();
-    }, [])
+  const [showFail, setShowFail] = useState(false);
+  const [error, setError] = useState("");
 
-    const renderWhenNotLogin = () => (
-        <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-        }}>
-            <span><p>Please Login</p></span>
-            <span><LoginButton /></span>
-        </div>
-    )
+  const handleSubmit = () => {
+    var body = {
+      [bodyKeys.em]: user.em,
+      [bodyKeys.pd]: user.pd,
+    };
+    setWaiting(true);
 
-    const renderWhenLogin = () => (
-        <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-        }}>
-            <span><LoginInfo /></span>
-            <span><Button onClick={handleLogOutClick}>LogOut</Button></span>
-        </div>
-    )
+    axios732.post(APIURL, body).then(
+      (res) => {
+        setWaiting(false);
+        setShowSuccess(true);
 
-    return <div>{auth ? renderWhenLogin() : renderWhenNotLogin()}</div>
+        setCookie("user", res.data, { path: "/" });
+      },
+      (err) => {
+        setWaiting(false);
+
+        const res = err.response;
+        const errmsg = res.data.message;
+        setError(errmsg);
+        setShowFail(true);
+      }
+    );
+  };
+
+  const history = useHistory();
+  function handleSuccessBar() {
+    setShowSuccess(false);
+    history.push("/");
+  }
+
+  function handleFailureBar() {
+    setShowFail(false);
+  }
+
+  return (
+    <>
+      <LoginPage
+        updateInfo={updateUser}
+        submit={handleSubmit}
+        isWaiting={waiting}
+      />
+      <SuccessBar
+        open={showSuccess}
+        onClick={handleSuccessBar}
+        message={successMsg}
+      />
+      <FailBar open={showFail} onClick={handleFailureBar} message={error} />
+    </>
+  );
 }
-
-export default withCookies(Login);

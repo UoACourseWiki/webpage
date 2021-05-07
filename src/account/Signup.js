@@ -27,7 +27,7 @@ export default function SignUp(props) {
       setWaiting(false);
 
       if (status === HTTP_OK) {
-        setWaiting(true);
+        setShowSuccess(true);
       } else {
         setShowFail(true);
         setError(errmsg);

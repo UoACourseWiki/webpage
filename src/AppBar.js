@@ -7,9 +7,6 @@ import styles from "./AppBar.module.css";
 import { profilePath } from "./utils/URLPath";
 import { useHistory } from "react-router";
 import { useCookies } from "react-cookie";
-import LoginButton from "./account/LoginButton";
-import React from "react";
-import { Fragment } from "react";
 
 export default function PrimarySearchAppBar() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -50,19 +47,18 @@ export default function PrimarySearchAppBar() {
 }
 
 const AccountMenu = ({ isMenuOpen, closeMenu }) => {
-  const [cookies, ,removeCookie] = useCookies(["user"])
+  const [cookies, , removeCookie] = useCookies(["user"]);
   const history = useHistory();
 
   function handleClickProfile() {
     closeMenu();
     history.push(profilePath);
   }
-  
+
   function handleClickLogout() {
-    removeCookie("user", { path: "/"});
+    removeCookie("user", { path: "/" });
     window.location.reload();
   }
-  
 
   return (
     <Menu
@@ -70,15 +66,15 @@ const AccountMenu = ({ isMenuOpen, closeMenu }) => {
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={closeMenu}
-    >{ cookies.user !== undefined ?
-      <>
-      <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
-      <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
-      </>
-      : <>
-      <LoginButton />
-      </>
-      }
+    >
+      {cookies.user !== undefined ? (
+        <>
+          <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
+          <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
+        </>
+      ) : (
+        <>{/* <LoginButton /> */}</>
+      )}
     </Menu>
   );
 };
