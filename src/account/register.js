@@ -1,4 +1,4 @@
-import { axios732, HTTP_OK } from "../../utils/Macro";
+import { axios732, HTTP_OK } from "../utils/Macro";
 
 const APIPath = "Users/register";
 const bodyKeys = {
@@ -15,7 +15,7 @@ const resigter = (user, callback) => {
     [bodyKeys.em]: user.em,
     [bodyKeys.pd]: user.pd,
     [bodyKeys.cpd]: user.cpd,
-    [bodyKeys.at]: true, // always true, from backend
+    [bodyKeys.at]: user.at,
   };
 
   axios732.post(APIPath, body).then(
