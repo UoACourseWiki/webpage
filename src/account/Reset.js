@@ -16,7 +16,7 @@ export default function ResetPassowrd() {
   // HTTP request
   const [waiting, setWaiting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const successMsg = "🤗 Registered!";
+  const successMsg = "🤗 Check your mailbox ~";
   const failMsg = "Unknown Error please try again!";
 
   const [showFail, setShowFail] = useState(false);
