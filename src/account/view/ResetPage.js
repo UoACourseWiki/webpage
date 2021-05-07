@@ -37,7 +37,6 @@ export default function LoginPage({ updateInfo, isWaiting, submit }) {
           />
 
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"

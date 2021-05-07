@@ -4,6 +4,7 @@ import { SuccessBar, FailBar } from "./view/ResultBar";
 import { useHistory } from "react-router-dom";
 import { axios732 } from "../utils/Macro";
 import { useCookies } from "react-cookie";
+import { validEmail } from "./validator";
 
 const APIURL = "/Users/authenticate";
 const bodyKeys = {
@@ -12,7 +13,7 @@ const bodyKeys = {
 };
 
 export default function Login() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ em: "", pd: "" });
 
   function updateUser(field) {
     setUser({ ...user, ...field });
@@ -26,9 +27,27 @@ export default function Login() {
   const successMsg = "🤗 Successfully!";
 
   const [showFail, setShowFail] = useState(false);
-  const [error, setError] = useState("");
+  const [failMsg, setFailMsg] = useState("");
+
+  function validate() {
+    var valid = true;
+    if (((valid = validEmail(user.em)), !valid)) {
+      setFailMsg("Email not valid!");
+      setShowFail(true);
+    } else if (((valid = user.pd.length !== 0), !valid)) {
+      setFailMsg("Input your password!");
+      setShowFail(true);
+    }
+
+    return valid;
+  }
 
   const handleSubmit = () => {
+    if (!validate()) {
+      return;
+    }
+
+    // send request
     var body = {
       [bodyKeys.em]: user.em,
       [bodyKeys.pd]: user.pd,
@@ -47,7 +66,7 @@ export default function Login() {
 
         const res = err.response;
         const errmsg = res.data.message;
-        setError(errmsg);
+        setFailMsg(errmsg);
         setShowFail(true);
       }
     );
@@ -75,7 +94,11 @@ export default function Login() {
         clickClose={handleSuccessBar}
         message={successMsg}
       />
-      <FailBar open={showFail} clickClose={handleFailureBar} message={error} />
+      <FailBar
+        open={showFail}
+        clickClose={handleFailureBar}
+        message={failMsg}
+      />
     </>
   );
 }
