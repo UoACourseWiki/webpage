@@ -1,26 +1,31 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 
 import LoginInfo from "./LoginInfo";
 import LoginButton from "./LoginButton.js";
 import SignupButton from "./signup/SignupButton.js";
-
-// import { UserContext } from "../utils/UserContext";
-import { LoginContext } from "../utils/LoginContext";
-import { useContext } from "react";
 import { Button } from "@material-ui/core";
+import { useCookies, withCookies } from "react-cookie";
 
-// const UserContext = react.createContext({dummyLogin});
 
 const Login = () => {
-    // const [user, setUser] = useContext(UserContext);
-    // setUser({ dummyLogin });
 
-    const [isLoggedIn, setLoginStatus] = useContext(LoginContext);
+    const [cookies, , removeCookie] = useCookies();
+    const [auth, setAuth] = useState(false);
 
     const handleLogOutClick = () => {
-        setLoginStatus(false);
+        removeCookie("user", { path: "/"});
         window.location.reload();
     }
+
+    useEffect(() => {
+        const readCookie = () => {
+            // console.log(typeof cookies.user)
+            if (cookies.user !== undefined){
+                setAuth(true);
+            }
+        }
+        readCookie();
+    }, [])
 
     const renderWhenNotLogin = () => (
         <div style={{
@@ -45,7 +50,7 @@ const Login = () => {
         </div>
     )
 
-    return <div>{isLoggedIn ? renderWhenLogin() : renderWhenNotLogin()}</div>
+    return <div>{auth ? renderWhenLogin() : renderWhenNotLogin()}</div>
 }
 
-export default Login;
+export default withCookies(Login);

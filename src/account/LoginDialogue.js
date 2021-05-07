@@ -1,53 +1,37 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Button } from "@material-ui/core";
-import axios from "axios";
-import { UserContext } from "../utils/UserContext";
-import { LoginContext } from "../utils/LoginContext";
-
-import dummyLogin from "./dummyJSON/dummyLogin.json"
+import { axios732 } from "../utils/Macro";
+import SignupButton from "./signup/SignupButton.js";
+import { useCookies, withCookies } from "react-cookie";
 
 const LoginDialogue = (props) => {
     const [userInputEmail, setUserInputEmail] = useState("");
     const [userInputPassword, setUserInputPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [, setUser] = useContext(UserContext);
-    const [, setLoginStatus] = useContext(LoginContext);
+    const [, setCookie] = useCookies("user");
 
-    // const [info, setInfo] = useState({userInputEmail, userInputPassword});
-
-    // const handleChange = (e) => {
-    //     console.log(e.target.value)
-    // }
+    const APIpathAuth = "/Users/authenticate";
+    //   "email": "ericzh718@gmail.com",
+    //   "password": "Test1234!",
 
 
 
-    //This method should be replaced with a proper form submission / request action
     const handleSubmit = () => {
 
-        // following block of code is for test purpose only
-        // if (userInputEmail === "" && userInputPassword === "") {
-        //     setUserInputEmail("user@example.com");
-        //     setUserInputPassword("Test123!");
-        // }
-        // var userSubmit = { userInputEmail, userInputPassword };
-        // console.log(userSubmit);
-        // test code ends
-
-        axios.post("https://localhost:5001/Auth/Login", {
+        axios732.post(APIpathAuth, {
             "email": userInputEmail,
             "password": userInputPassword
         })
             .then((res) => {
-                setUser(dummyLogin.user);
-                setLoginStatus(true);
+                setCookie('user', res.data, { path: "/" });
                 setTimeout(() => { props.onClose() }, 2000);
+                window.location.reload();
             })
             .catch((err) => {
-                // Error message handelling need to be smarter
-                const error = err.response.data.errors;
-                const errorMsg = JSON.stringify(error);
+                const errorMsg = "Login Failed! Please check your Email or Password";
                 setErrorMessage(errorMsg);
-        })
+                console.log("this is error:" + err.data)
+            })
 
     }
 
@@ -61,10 +45,12 @@ const LoginDialogue = (props) => {
             <input type="text" onChange={e => setUserInputPassword(e.target.value)}></input>
             <br />
             <p>{errorMessage}</p>
+            <p>Do not have an account yet?<SignupButton /></p>
+            <p>Forget your password?</p>
             <Button onClick={handleSubmit}>Login</Button>
         </div>
     )
 
 }
 
-export default LoginDialogue;
+export default withCookies(LoginDialogue);
