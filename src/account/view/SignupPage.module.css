@@ -1,0 +1,48 @@
+.pdInvalid {
+  color: blue;
+}
+
+.pdValid {
+  color: green;
+}
+
+.paper {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  margin: 1px;
+  background-color: #dc004e;
+}
+
+.form {
+  width: 100%;
+  margin-top: 1px;
+}
+
+.submit {
+  top: 20px;
+}
+
+.pdContainer {
+  display: flex;
+}
+
+.hintSwt {
+  left: 12px;
+  margin-right: 10px;
+}
+
+.hintShow {
+  display: block;
+}
+.hintHidden {
+  display: none;
+}
+
+.repeatPd {
+  margin-top: 8px;
+}
