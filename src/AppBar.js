@@ -8,6 +8,8 @@ import { profilePath } from "./utils/URLPath";
 import { useHistory } from "react-router";
 import { useCookies } from "react-cookie";
 import LoginButton from "./account/LoginButton";
+import React from "react";
+import { Fragment } from "react";
 
 export default function PrimarySearchAppBar() {
   const [openMenu, setOpenMenu] = useState(false);
