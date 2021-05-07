@@ -1,9 +1,7 @@
 import AsyncSelect from "react-select/async";
-import { useHistory } from "react-router-dom";
 import { loadOptions, HTTP_OK } from "./networkHandler";
 
 export default function SearchPage() {
-  let history = useHistory();
   const loadingMsg = "🔍 Searching ...";
 
   return (
@@ -18,7 +16,7 @@ export default function SearchPage() {
           return;
         }
 
-        history.push(item.value);
+        window.location.href = item.value;
       }}
       components={{
         DropdownIndicator: () => null,
