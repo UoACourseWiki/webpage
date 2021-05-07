@@ -23,7 +23,7 @@ export default function Login() {
   // HTTP request
   const [waiting, setWaiting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const successMsg = "🤗 Registered!";
+  const successMsg = "🤗 Successfully!";
 
   const [showFail, setShowFail] = useState(false);
   const [error, setError] = useState("");
@@ -72,10 +72,10 @@ export default function Login() {
       />
       <SuccessBar
         open={showSuccess}
-        onClick={handleSuccessBar}
+        clickClose={handleSuccessBar}
         message={successMsg}
       />
-      <FailBar open={showFail} onClick={handleFailureBar} message={error} />
+      <FailBar open={showFail} clickClose={handleFailureBar} message={error} />
     </>
   );
 }
