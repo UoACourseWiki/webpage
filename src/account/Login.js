@@ -1,10 +1,10 @@
 import LoginPage from "./view/LoginPage";
 import { useState } from "react";
-import { SuccessBar, FailBar } from "./view/ResultBar";
+import { SuccessBar, FailBar } from "../utils/ResultBar";
 import { useHistory } from "react-router-dom";
 import { axios732 } from "../utils/Macro";
 import { useCookies } from "react-cookie";
-import { validEmail } from "./validator";
+import { validEmail } from "../utils/validator";
 
 const APIURL = "/Users/authenticate";
 const bodyKeys = {

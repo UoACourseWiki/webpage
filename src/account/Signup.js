@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { resigter, HTTP_OK } from "./register";
 import SignupPage from "./view/SignupPage";
-import { SuccessBar, FailBar } from "./view/ResultBar";
+import { SuccessBar, FailBar } from "../utils/ResultBar";
 import { loginPath } from "../utils/URLPath";
 import { useHistory } from "react-router-dom";
 

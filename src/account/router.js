@@ -17,6 +17,7 @@ function Init() {
       <Route path={resetPassword}>
         <ResetPassowrd />
       </Route>
+
       <Route path="/">
         <Redirect to="/"></Redirect>
       </Route>

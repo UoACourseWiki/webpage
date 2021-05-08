@@ -9,44 +9,36 @@ import {
   Box,
   Typography,
   CssBaseline,
-  Checkbox,
   Card,
   Switch,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import styles from "./SignupPage.module.css";
-
+import styles from "./SettingsPage.module.css";
 import { useState } from "react";
-import { validEmail, validPassword } from "../../utils/validator";
-import { Copyright } from "../../utils/ViewComponent";
+import { Copyright } from "../utils/ViewComponent";
+import { validPassword } from "../utils/validator";
 
-const SignupPage = ({ updateInfo, isWaiting, submit }) => {
+const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {
   const [enableSubmit, setEnableSubmit] = useState(false);
-
-  const [validInputs, setValidInputs] = useState({
-    em: false,
-    pd: false,
-    tm: false,
-  });
-
-  function updateInputsValid(field) {
-    var result = { ...validInputs, ...field };
-
-    setValidInputs(result);
-    setEnableSubmit(Boolean(result.em & result.pd & result.tm));
-  }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={styles.paper}>
         <Typography component="h1" variant="h5">
-          Sign up to CourseWiki
+          Change your account settings
         </Typography>
 
         <form className={styles.form}>
           <TextField
-            autoComplete="name"
+            defaultValue={currentUser.email}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            inputProps={{ readOnly: true }}
+          />{" "}
+          <TextField
+            defaultValue={currentUser.nickName}
             name="nickName"
             margin="normal"
             variant="outlined"
@@ -57,30 +49,21 @@ const SignupPage = ({ updateInfo, isWaiting, submit }) => {
             autoFocus
             onChange={(e) => updateInfo({ nm: e.target.value })}
           />
-          <EmailInputText
-            updateInfo={updateInfo}
-            enableSubmit={(valid) => {
-              updateInputsValid(valid);
-            }}
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="Old password"
+            label="Old Password"
+            type="password"
+            id="oldpassword"
+            autoComplete="current-password"
+            onChange={(e) => updateInfo({ opd: e.target.value })}
           />
           <PasswordInputText
             updateInfo={updateInfo}
-            enableSubmit={(valid) => {
-              updateInputsValid(valid);
-            }}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={validInputs.tm}
-                color="primary"
-                onChange={(e) => {
-                  updateInfo({ at: e.target.checked });
-                  updateInputsValid({ tm: !validInputs.tm });
-                }}
-              />
-            }
-            label="Accept Term of Service"
+            updatePsddValid={(v) => setEnableSubmit(v)}
           />
           <Button
             fullWidth
@@ -90,7 +73,7 @@ const SignupPage = ({ updateInfo, isWaiting, submit }) => {
             onClick={submit}
             disabled={!enableSubmit || isWaiting}
           >
-            Sign up
+            Apply Changes
           </Button>
         </form>
       </div>
@@ -101,45 +84,7 @@ const SignupPage = ({ updateInfo, isWaiting, submit }) => {
   );
 };
 
-const EmailInputText = ({ updateInfo, enableSubmit }) => {
-  const [email, setEmail] = useState("");
-  const [emailValid, setEmailValid] = useState(true);
-  const [htxt, setHtxt] = useState("");
-
-  const handleEmailBlur = () => {
-    var text = "";
-    var valid = validEmail(email);
-    if (valid) {
-      updateInfo({ em: email });
-    } else {
-      text =
-        email.length === 0 ? "this field is required" : "email is not valid";
-    }
-
-    setEmailValid(valid);
-    setHtxt(text);
-    enableSubmit({ em: valid });
-  };
-
-  return (
-    <TextField
-      value={email}
-      error={!emailValid}
-      onBlur={handleEmailBlur}
-      onChange={(e) => {
-        setEmail(e.target.value);
-      }}
-      helperText={htxt}
-      variant="outlined"
-      margin="normal"
-      required
-      fullWidth
-      label="Email Address"
-    />
-  );
-};
-
-const PasswordInputText = ({ updateInfo, enableSubmit }) => {
+const PasswordInputText = ({ updateInfo, updatePsddValid }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -150,8 +95,9 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
   }
 
   function handleRepeatInput(same) {
+    console.log(conditions.final, same);
     var vfinal = Boolean(conditions.final & same);
-    enableSubmit({ pd: vfinal });
+    updatePsddValid(vfinal);
 
     if (vfinal) {
       updateInfo({ pd: password, cpd: password });
@@ -168,6 +114,7 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
 
   return (
     <>
+      <p>Leave New Password field empty if you do not want to change them</p>
       <div className={styles.pdContainer}>
         <OutlinedInput
           type={showPassword ? "text" : "password"}
@@ -274,4 +221,4 @@ const RepeatPassowrdInputText = ({ initPassword, onSame }) => {
   );
 };
 
-export default SignupPage;
+export default SettingsPage;
