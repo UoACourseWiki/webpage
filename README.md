@@ -30,15 +30,15 @@ localhost:5000/swagger
 in your browser after you have your server-end setup.
 
 ### Use Remote Server
-If you just want to check how it works in front-end and/or the backend server simply didn't fire up on your machine, we have our remote server working in production mode as well! (And thanks Joe for settin up the remote server!)
+If you just want to check how it works in front-end and/or the backend server simply didn't fire up on your machine, we have our remote server working in for testing and debugging as well! (And thanks Joe for setup and maintaining the remote server!)
 
 To use remote server, you would need to run the App in `production build`.
 
-If you want to use it in `development mode`, you need to change the URL in file `webpage/.env.development` to:
+If you want to use it in `development mode`, you need to overwrite the BASEURL in file `webpage/.env.development` to:
 ```
 REACT_APP_API_BASEURL=https://732.joenan.com/api
 ```
-Then all the server request will be sent to the remote server. 
+Then all the server request will be sent to the remote server. You will need to stop the development server (if you have it running) and re-run `npm start` command to apply this change.
 
 If you need to access the remote Swagger API Interface, goto:
 ```
