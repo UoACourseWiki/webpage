@@ -1,6 +1,15 @@
 import { useState } from "react";
-import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
-import AccountCircle from "@material-ui/icons/AccountCircle";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Menu,
+  MenuItem,
+  Link,
+  Avatar,
+  Typography,
+} from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
 
 import SearchPage from "./search/searchPage";
 import styles from "./AppBar.module.css";
@@ -11,9 +20,11 @@ import { useLocation } from "react-router-dom";
 import Auth from "./account/Auth";
 
 export default function PrimarySearchAppBar() {
-  const location = useLocation();
   //  hide searchBar on homepage
+  const location = useLocation();
   const hideSearchBar = location.pathname === "/";
+
+  const history = useHistory();
 
   // Account Menu
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,6 +33,21 @@ export default function PrimarySearchAppBar() {
     <div className={styles.grow}>
       <AppBar color="default" position="static">
         <Toolbar>
+          <Link href="/">
+            <Avatar
+              alt="CourseWiki"
+              src="/topbarLogo.png"
+              className={styles.avatar}
+            />
+          </Link>
+          <Typography
+            className={styles.title}
+            variant="h6"
+            color={"textPrimary"}
+            noWrap
+          >
+            CourseWiki
+          </Typography>
           <div className={hideSearchBar ? styles.searchHide : styles.search}>
             <SearchPage />
           </div>
@@ -34,7 +60,7 @@ export default function PrimarySearchAppBar() {
               onClick={(e) => {
                 setAnchorEl(e.currentTarget);
               }}
-              color="inherit"
+              color="action"
             >
               <AccountCircle />
             </IconButton>
