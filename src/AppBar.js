@@ -8,6 +8,7 @@ import {
   Link,
   Avatar,
   Typography,
+  Button,
 } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 
@@ -16,6 +17,7 @@ import styles from "./AppBar.module.css";
 import { profilePath } from "./utils/URLPath";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
+import { signupPath } from "./utils/URLPath";
 
 import Auth from "./account/Auth";
 
@@ -23,8 +25,6 @@ export default function PrimarySearchAppBar() {
   //  hide searchBar on homepage
   const location = useLocation();
   const hideSearchBar = location.pathname === "/";
-
-  const history = useHistory();
 
   // Account Menu
   const [anchorEl, setAnchorEl] = useState(null);
@@ -53,6 +53,7 @@ export default function PrimarySearchAppBar() {
           </div>
           <div className={styles.grow} />
           <div>
+            <SignupButton />
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -76,6 +77,24 @@ export default function PrimarySearchAppBar() {
     </div>
   );
 }
+
+const SignupButton = () => {
+  const [logined] = Auth();
+  if (logined) {
+    return <div></div>;
+  }
+
+  return (
+    <Button
+      color="inherit"
+      onClick={() => {
+        window.location.href = signupPath;
+      }}
+    >
+      Sign in
+    </Button>
+  );
+};
 
 const AccountMenu = ({ anchorEl, close }) => {
   const history = useHistory();
