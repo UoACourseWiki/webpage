@@ -26,18 +26,22 @@ const SettingsPage = ({ updateInfo, isWaiting, submit }) => {
     const [enableSubmit, setEnableSubmit] = useState(true);
     const [cookies, setCookie] = useCookies(["user"]);
     let _currentUser = cookies.user;
-    console.log(cookies.user)
+    // console.log(cookies.user)
 
     const [validInputs, setValidInputs] = useState({
         pd: false,
     });
 
-    // useEffect(() => {
-    //     try {
-    //         _currentUser.jwtToken = TokenRefresher(_currentUser.jwtToken, _currentUser.refreshToken);
-    //         setCookie("user", _currentUser, { path: "/" })
-    //     } catch (e) { console.log(e) }
-    // }, [])
+    useEffect( async () => {
+        try {
+            let _user = await TokenRefresher(_currentUser);
+            if (typeof _user !== 'undefined') {
+                console.log(_user)
+                setCookie("user", _user, { path: "/" })
+            }
+            ;
+        } catch (e) { console.log(e) }
+    }, [])
 
     function updateInputsValid(field) {
         var result = { ...validInputs, ...field };
@@ -54,11 +58,11 @@ const SettingsPage = ({ updateInfo, isWaiting, submit }) => {
 
                 <form className={styles.form}>
                     <EmailInputText
-                        currentUser={_currentUser}
+                        currentUser={cookies.user}
                         updateInfo={updateInfo}
                     />
                     <TextField
-                        defaultValue={_currentUser.nickName}
+                        defaultValue={cookies.user.nickName}
                         name="nickName"
                         margin="normal"
                         variant="outlined"

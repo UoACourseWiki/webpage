@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 
 import SettingsPage from "../view/SettingsPage.js";
-import {settingsHandler, getCurrentUser } from "./settingsHandler.js";
-import { loginPath } from "../../utils/URLPath.js";
+import { settingsHandler } from "./settingsHandler.js";
+// import { loginPath } from "../../utils/URLPath.js";
 import { axios732, HTTP_OK } from "../../utils/Macro.js";
 import { SuccessBar, FailBar } from "../view/ResultBar.js";
 // import TokenRefresher from "../../utils/TokenRefresher.js";
@@ -59,20 +59,21 @@ export default function Settings() {
         setShowFail(false);
     }
 
+    console.log(cookies.user.id)
     return (
         <>
             <SettingsPage
-                updateInfo={()=>updateUser}
-                submit={()=>handleSubmit}
+                updateInfo={updateUser}
+                submit={handleSubmit}
                 isWaiting={waiting}
                 currentUser={cookies.user}
             />
             <SuccessBar
                 open={showSuccess}
-                onClick={()=>handleSuccess}
+                onClick={handleSuccess}
                 message={successMsg}
             />
-            <FailBar open={showFail} onClick={()=>handleFailure} message={error} />
+            <FailBar open={showFail} onClick={handleFailure} message={error} />
         </>
     );
 

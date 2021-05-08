@@ -1,4 +1,4 @@
-import { axios732 } from "../../utils/Macro";
+import { axios732, HTTP_OK } from "../../utils/Macro";
 
 const APIURL = "Users";
 const bodyKeys = {
@@ -43,13 +43,12 @@ const settingsHandler = (user, callback) => {
             [bodyKeys.cpd]: user.cpd,
         };
     }
-    
 
     const APIPath = "Users/" + user.id; 
 
     axios732.post(APIPath, body).then(
         () => {
-            callback("200");
+            callback(HTTP_OK);
         },
         (err) => {
             const res = err.response;
