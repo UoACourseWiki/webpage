@@ -37,7 +37,7 @@ const getCurrentUser = (user) => {
       return res.data;
     })
     .catch((err) => {
-      console.log("Failed to get current user info: ${err.response}");
+      console.log("Failed to get current user info");
       return user;
     });
 };
@@ -69,18 +69,5 @@ const setInfo = (user, newUser, callback) => {
     }
   );
 };
-
-// //
-// useEffect(async () => {
-//   try {
-//     let _user = await TokenRefresher(_currentUser);
-//     if (typeof _user !== "undefined") {
-//       console.log(_user);
-//       setCookie("user", _user, { path: "/" });
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   }
-// }, []);
 
 export { getCurrentUser, setInfo, validate };

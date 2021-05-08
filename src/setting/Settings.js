@@ -47,12 +47,10 @@ export default function Settings() {
       setWaiting(true);
 
       // Refresh token when submit
-      console.log("current User: -> " + currentUser.id)
-      // var _newUser = TokenRefresher(currentUser);
-      // console.log(_newUser);
       //Welcome to callback hell! Have fun with async
       TokenRefresher(currentUser, (status, newUser) => {
         if (status !== HTTP_OK) {
+          setWaiting(false);
           setShowFail(true);
           setError("Token Fetch Failed, please logout and try again");
           return
@@ -66,9 +64,9 @@ export default function Settings() {
             setShowFail(true);
             setError(errmsg);
           }
-        } )
-      } )
-      
+        })
+      })
+
     });
   };
 

@@ -1,10 +1,6 @@
-// import { useCookies } from "react-cookie";
 import { axios732, HTTP_OK } from "./Macro";
 
 export default function TokenRefresher(user, callback) {
-    // const [cookies, setCookie] = useCookies(["user"]);
-
-    // if (user == null) { return user };
 
     axios732.post("/Users/refresh-token",
         {
@@ -13,7 +9,7 @@ export default function TokenRefresher(user, callback) {
         }
     ).then(
         (res) => {
-            console.log("token refreshed:" + res.data.jwtToken);
+            console.log("Token refreshed!");
             callback(HTTP_OK, res.data)
         }
     ).catch((err) => {
