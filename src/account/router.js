@@ -3,7 +3,7 @@ import Login from "./Login.js";
 import SignUp from "./Signup";
 import ResetPassowrd from "./Reset";
 
-import { signupPath, loginPath, resetPassword } from "../utils/URLPath";
+import { signupPath, loginPath, forgetPassword } from "../utils/URLPath";
 
 function Init() {
   return (
@@ -14,7 +14,7 @@ function Init() {
       <Route path={loginPath}>
         <Login />
       </Route>
-      <Route path={resetPassword}>
+      <Route path={forgetPassword}>
         <ResetPassowrd />
       </Route>
 
