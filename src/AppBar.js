@@ -91,7 +91,7 @@ const SignupButton = () => {
         window.location.href = signupPath;
       }}
     >
-      Sign Up
+      Join Wiki!
     </Button>
   );
 };
