@@ -61,7 +61,7 @@ export default function PrimarySearchAppBar() {
               onClick={(e) => {
                 setAnchorEl(e.currentTarget);
               }}
-              color="action"
+              color="default"
             >
               <AccountCircle />
             </IconButton>
