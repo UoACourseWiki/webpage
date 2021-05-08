@@ -28,17 +28,29 @@ const loadOptions = async (inputValue, callback) => {
 const showCnt = 8;
 const linkPrefix = "/course";
 function parseSubjectResBody(data) {
-  return data
-    .map((course) => {
-      var ctlgNbr = course.catalogNbr;
-      var sbjt = course.subject;
+  var subjects = new Set();
 
+  var cItmes = data
+    .map((course) => {
+      var sbjt = course.subject;
+      subjects.add(sbjt);
+
+      var ctlgNbr = course.catalogNbr;
       var courseKey = sbjt + "-" + ctlgNbr;
       var linkPath = `${linkPrefix}/${sbjt}/${ctlgNbr}`;
 
       return { label: courseKey, value: linkPath, status: HTTP_OK };
     })
     .slice(0, showCnt);
+
+  var sItems = Array.from(subjects)
+    .map((s) => {
+      var linkPath = `${linkPrefix}/${s}`;
+      return { label: s, value: linkPath, status: HTTP_OK };
+    })
+    .slice(0, 2);
+
+  return sItems.concat(cItmes);
 }
 
 export { loadOptions, HTTP_OK };
