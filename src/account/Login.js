@@ -65,7 +65,12 @@ export default function Login() {
         setWaiting(false);
 
         const res = err.response;
-        const errmsg = res.data.message;
+
+        var errmsg = "Sorry, Unknown Error please try again!";
+        if (res !== undefined && res.data !== undefined) {
+          errmsg = res.data.message;
+        }
+
         setFailMsg(errmsg);
         setShowFail(true);
       }

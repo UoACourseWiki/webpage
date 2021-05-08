@@ -28,17 +28,31 @@ const loadOptions = async (inputValue, callback) => {
 const showCnt = 8;
 const linkPrefix = "/course";
 function parseSubjectResBody(data) {
-  return data
-    .map((course) => {
-      var ctlgNbr = course.catalogNbr;
-      var sbjt = course.subject;
+  var subjects = new Set();
 
-      var courseKey = sbjt + "-" + ctlgNbr;
-      var linkPath = `${linkPrefix}/${sbjt}/${ctlgNbr}`;
+  var cItmes = data.map((course) => {
+    var sbjt = course.subject;
+    subjects.add(sbjt);
 
-      return { label: courseKey, value: linkPath, status: HTTP_OK };
+    var ctlgNbr = course.catalogNbr;
+    var courseKey = sbjt + "-" + ctlgNbr;
+    var linkPath = `${linkPrefix}/${sbjt}/${ctlgNbr}`;
+
+    return { label: courseKey, value: linkPath, status: HTTP_OK };
+  });
+
+  // shuffle items for display
+  cItmes = cItmes.sort((a, b) => 0.5 - Math.random()).slice(0, showCnt);
+
+  // add subject entry
+  var sItems = Array.from(subjects)
+    .map((s) => {
+      var linkPath = `${linkPrefix}/${s}`;
+      return { label: s, value: linkPath, status: HTTP_OK };
     })
-    .slice(0, showCnt);
+    .slice(0, 2);
+
+  return sItems.concat(cItmes);
 }
 
 export { loadOptions, HTTP_OK };

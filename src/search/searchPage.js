@@ -6,7 +6,7 @@ export default function SearchPage() {
 
   return (
     <AsyncSelect
-      placeholder="Type a Subject or CourseId ..."
+      placeholder="Search a Subject or CourseId ..."
       loadingMessage={() => {
         return loadingMsg;
       }}
