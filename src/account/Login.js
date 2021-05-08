@@ -24,7 +24,7 @@ export default function Login() {
   // HTTP request
   const [waiting, setWaiting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const successMsg = "🤗 Successfully!";
+  const successMsg = "🤗 Login Successful!";
 
   const [showFail, setShowFail] = useState(false);
   const [failMsg, setFailMsg] = useState("");

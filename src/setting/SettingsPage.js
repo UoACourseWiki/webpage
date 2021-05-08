@@ -95,7 +95,6 @@ const PasswordInputText = ({ updateInfo, updatePsddValid }) => {
   }
 
   function handleRepeatInput(same) {
-    console.log(conditions.final, same);
     var vfinal = Boolean(conditions.final & same);
     updatePsddValid(vfinal);
 
