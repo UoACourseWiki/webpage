@@ -7,8 +7,13 @@ import styles from "./AppBar.module.css";
 import { profilePath } from "./utils/URLPath";
 import { useHistory } from "react-router";
 import { useCookies } from "react-cookie";
+import { useLocation } from "react-router-dom";
 
 export default function PrimarySearchAppBar() {
+  const location = useLocation();
+  //  hide searchBar on homepage
+  const hideSearchBar = location.pathname === "/";
+
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleProfileMenuOpen = () => {
@@ -19,7 +24,7 @@ export default function PrimarySearchAppBar() {
     <div className={styles.grow}>
       <AppBar color="default" position="static">
         <Toolbar>
-          <div className={styles.search}>
+          <div className={hideSearchBar ? styles.searchHide : styles.search}>
             <SearchPage />
           </div>
           <div className={styles.grow} />
