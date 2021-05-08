@@ -11,6 +11,8 @@ import {
   CssBaseline,
   Card,
   Switch,
+  CardContent,
+  Checkbox,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "./SettingsPage.module.css";
@@ -19,7 +21,8 @@ import { Copyright } from "../utils/ViewComponent";
 import { validPassword } from "../utils/validator";
 
 const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {
-  const [enableSubmit, setEnableSubmit] = useState(false);
+  const [newPswdValid, setNewPswdValid] = useState(false);
+  const [needResetPswd, setNeedResetPswd] = useState(false);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,9 +64,22 @@ const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {
             autoComplete="current-password"
             onChange={(e) => updateInfo({ opd: e.target.value })}
           />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="reset-password"
+                color="primary"
+                onClick={(e) => {
+                  setNeedResetPswd(e.target.checked);
+                }}
+              />
+            }
+            label="Reset password"
+          />
           <PasswordInputText
+            show={needResetPswd}
             updateInfo={updateInfo}
-            updatePsddValid={(v) => setEnableSubmit(v)}
+            updatePswdValid={(v) => setNewPswdValid(v)}
           />
           <Button
             fullWidth
@@ -71,7 +87,7 @@ const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {
             color="primary"
             className={styles.submit}
             onClick={submit}
-            disabled={!enableSubmit || isWaiting}
+            disabled={(needResetPswd && !newPswdValid) || isWaiting}
           >
             Apply Changes
           </Button>
@@ -84,7 +100,7 @@ const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {
   );
 };
 
-const PasswordInputText = ({ updateInfo, updatePsddValid }) => {
+const PasswordInputText = ({ show, updateInfo, updatePswdValid }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -96,7 +112,7 @@ const PasswordInputText = ({ updateInfo, updatePsddValid }) => {
 
   function handleRepeatInput(same) {
     var vfinal = Boolean(conditions.final & same);
-    updatePsddValid(vfinal);
+    updatePswdValid(vfinal);
 
     if (vfinal) {
       updateInfo({ pd: password, cpd: password });
@@ -112,7 +128,7 @@ const PasswordInputText = ({ updateInfo, updatePsddValid }) => {
   }
 
   return (
-    <>
+    <div className={show ? styles.pdShow : styles.pdHidden}>
       <p>Leave New Password field empty if you do not want to change them</p>
       <div className={styles.pdContainer}>
         <OutlinedInput
@@ -154,38 +170,40 @@ const PasswordInputText = ({ updateInfo, updatePsddValid }) => {
           onSame={handleRepeatInput}
         />
       </div>
-    </>
+    </div>
   );
 };
 
 const miniLength = 6;
 const PdRequirementsCard = ({ open, conditions }) => {
   return (
-    <Card className={open ? styles.hintShow : styles.hintHidden}>
-      <p
-        id="length"
-        className={conditions.length ? styles.pdValid : styles.pdInvalid}
-      >
-        Minimum <b>{miniLength} characters</b>
-      </p>
-      <p
-        id="letter"
-        className={conditions.letter ? styles.pdValid : styles.pdInvalid}
-      >
-        <b>Lowercase </b> & <b> Capital (Uppercase) </b> letters
-      </p>
-      <p
-        id="symbol"
-        className={conditions.symbol ? styles.pdValid : styles.pdInvalid}
-      >
-        A <b>symbol</b> letter
-      </p>
-      <p
-        id="number"
-        className={conditions.number ? styles.pdValid : styles.pdInvalid}
-      >
-        A <b>number</b>
-      </p>
+    <Card style={{ marginTop: "4px" }}>
+      <CardContent className={open ? styles.hintShow : styles.hintHidden}>
+        <p
+          id="length"
+          className={conditions.length ? styles.pdValid : styles.pdInvalid}
+        >
+          Minimum <b>{miniLength} characters</b>
+        </p>
+        <p
+          id="letter"
+          className={conditions.letter ? styles.pdValid : styles.pdInvalid}
+        >
+          <b>Lowercase </b> & <b> Capital (Uppercase) </b> letters
+        </p>
+        <p
+          id="symbol"
+          className={conditions.symbol ? styles.pdValid : styles.pdInvalid}
+        >
+          A <b>symbol</b> letter
+        </p>
+        <p
+          id="number"
+          className={conditions.number ? styles.pdValid : styles.pdInvalid}
+        >
+          A <b>number</b>
+        </p>
+      </CardContent>
     </Card>
   );
 };
