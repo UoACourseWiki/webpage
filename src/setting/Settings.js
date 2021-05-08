@@ -6,6 +6,8 @@ import { setInfo, validate } from "./settingsHandler.js";
 import { loginPath } from "../utils/URLPath.js";
 import { HTTP_OK } from "../utils/Macro.js";
 import { SuccessBar, FailBar } from "../utils/ResultBar.js";
+import TokenRefresher from "../utils/TokenRefresher.js";
+
 
 export default function Settings() {
   const [cookies, , removeCookie] = useCookies(["user"]);
@@ -21,10 +23,6 @@ export default function Settings() {
     nm: currentUser.nickName,
     opd: "",
   });
-
-  // Refresh Token before get user info
-  // TokenRefresher();
-  // console.log("Get current user:" + _user)
 
   function updateUser(field) {
     setUser({ ...user, ...field });
@@ -45,20 +43,32 @@ export default function Settings() {
         return;
       }
 
-      console.log(user);
-      //send request
+      //Refresh Token then send request
       setWaiting(true);
 
-      setInfo(user, (status, errmsg) => {
-        setWaiting(false);
-
-        if (status === HTTP_OK) {
-          setShowSuccess(true);
-        } else {
+      // Refresh token when submit
+      console.log("current User: -> " + currentUser.id)
+      // var _newUser = TokenRefresher(currentUser);
+      // console.log(_newUser);
+      //Welcome to callback hell! Have fun with async
+      TokenRefresher(currentUser, (status, newUser) => {
+        if (status !== HTTP_OK) {
           setShowFail(true);
-          setError(errmsg);
+          setError("Token Fetch Failed, please logout and try again");
+          return
         }
-      });
+
+        setInfo(user, newUser, (status, errmsg) => {
+          setWaiting(false);
+          if (status === HTTP_OK) {
+            setShowSuccess(true);
+          } else {
+            setShowFail(true);
+            setError(errmsg);
+          }
+        } )
+      } )
+      
     });
   };
 

@@ -42,7 +42,12 @@ const getCurrentUser = (user) => {
     });
 };
 
-const setInfo = (user, callback) => {
+const setInfo = (user, newUser, callback) => {
+  const bearerString = "Bearer " + newUser.jwtToken;
+  const tokenHeader = {
+    headers: { Authorization: bearerString },
+  };
+
   var body = {
     [bodyKeys.nm]: user.nm,
     [bodyKeys.opd]: user.opd,
@@ -52,8 +57,8 @@ const setInfo = (user, callback) => {
     [bodyKeys.cpd]: user.cpd,
   };
 
-  const reqUrl = APIPath + "/" + user.id;
-  axios732.post(reqUrl, body).then(
+  const reqUrl = APIPath + "/" + newUser.id;
+  axios732.put(reqUrl, body, tokenHeader).then(
     () => {
       callback(HTTP_OK);
     },
