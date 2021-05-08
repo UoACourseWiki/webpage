@@ -8,7 +8,6 @@ import { HTTP_OK } from "../utils/Macro.js";
 import { SuccessBar, FailBar } from "../utils/ResultBar.js";
 import TokenRefresher from "../utils/TokenRefresher.js";
 
-
 export default function Settings() {
   const [cookies, , removeCookie] = useCookies(["user"]);
   const currentUser = cookies.user;
@@ -53,7 +52,7 @@ export default function Settings() {
           setWaiting(false);
           setShowFail(true);
           setError("Token Fetch Failed, please logout and try again");
-          return
+          return;
         }
 
         setInfo(user, newUser, (status, errmsg) => {
@@ -64,9 +63,8 @@ export default function Settings() {
             setShowFail(true);
             setError(errmsg);
           }
-        })
-      })
-
+        });
+      });
     });
   };
 
