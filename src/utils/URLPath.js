@@ -4,11 +4,11 @@ const signupPath = "/account/join";
 const loginPath = "/account/login";
 const resetPassword = "/account/password_reset";
 
+const profilePath = "/setting";
+
 const coursePathPrefix = "/course";
 const subjectPath = "/course/:subject";
 const coursePath = "/course/:subject/:courseId";
-
-const profilePath = "/setting";
 
 export {
   signupPath,

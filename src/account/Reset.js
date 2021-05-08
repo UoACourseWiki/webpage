@@ -1,9 +1,9 @@
 import ResetPage from "./view/ResetPage";
 import { useState } from "react";
-import { SuccessBar, FailBar } from "./view/ResultBar";
+import { SuccessBar, FailBar } from "../utils/ResultBar";
 import { useHistory } from "react-router-dom";
 import { axios732 } from "../utils/Macro";
-import { validEmail } from "./validator";
+import { validEmail } from "../utils/validator";
 
 const APIURL = "/Users/forgot-password";
 
