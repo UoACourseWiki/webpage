@@ -11,6 +11,7 @@ import {
   CssBaseline,
   Card,
   Switch,
+  CardContent,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "./SettingsPage.module.css";
@@ -161,31 +162,33 @@ const PasswordInputText = ({ updateInfo, updatePsddValid }) => {
 const miniLength = 6;
 const PdRequirementsCard = ({ open, conditions }) => {
   return (
-    <Card className={open ? styles.hintShow : styles.hintHidden}>
-      <p
-        id="length"
-        className={conditions.length ? styles.pdValid : styles.pdInvalid}
-      >
-        Minimum <b>{miniLength} characters</b>
-      </p>
-      <p
-        id="letter"
-        className={conditions.letter ? styles.pdValid : styles.pdInvalid}
-      >
-        <b>Lowercase </b> & <b> Capital (Uppercase) </b> letters
-      </p>
-      <p
-        id="symbol"
-        className={conditions.symbol ? styles.pdValid : styles.pdInvalid}
-      >
-        A <b>symbol</b> letter
-      </p>
-      <p
-        id="number"
-        className={conditions.number ? styles.pdValid : styles.pdInvalid}
-      >
-        A <b>number</b>
-      </p>
+    <Card style={{ marginTop: "4px" }}>
+      <CardContent className={open ? styles.hintShow : styles.hintHidden}>
+        <p
+          id="length"
+          className={conditions.length ? styles.pdValid : styles.pdInvalid}
+        >
+          Minimum <b>{miniLength} characters</b>
+        </p>
+        <p
+          id="letter"
+          className={conditions.letter ? styles.pdValid : styles.pdInvalid}
+        >
+          <b>Lowercase </b> & <b> Capital (Uppercase) </b> letters
+        </p>
+        <p
+          id="symbol"
+          className={conditions.symbol ? styles.pdValid : styles.pdInvalid}
+        >
+          A <b>symbol</b> letter
+        </p>
+        <p
+          id="number"
+          className={conditions.number ? styles.pdValid : styles.pdInvalid}
+        >
+          A <b>number</b>
+        </p>
+      </CardContent>
     </Card>
   );
 };

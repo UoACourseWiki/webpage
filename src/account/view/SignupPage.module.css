@@ -1,9 +1,11 @@
 .pdInvalid {
-  color: blue;
+  color: dimgrey;
+  font-style: italic;
 }
 
 .pdValid {
   color: green;
+  font-style: italic;
 }
 
 .paper {
@@ -38,6 +40,7 @@
 
 .hintShow {
   display: block;
+  background-color: aliceblue;
 }
 .hintHidden {
   display: none;
