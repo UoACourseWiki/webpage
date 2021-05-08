@@ -3,6 +3,15 @@ Welcome to UoA Course Wiki!
 
 Course Wiki is a Single Page Application build by React.js, supported by .Net Core Server.
 
+# Our Team Member
+Ken Fang - yfan159@aucklanduni.ac.nz 
+
+Joe Wu - hwu263@aucklanduni.ac.nz 
+
+Ruke Wei - rwei890@aucklanduni.ac.nz 
+
+Yujun Zhang - yzha725@aucklanduni.ac.nz
+
 # To run this project ... 
 
 ## Front End
