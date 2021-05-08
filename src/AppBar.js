@@ -15,11 +15,8 @@ export default function PrimarySearchAppBar() {
   //  hide searchBar on homepage
   const hideSearchBar = location.pathname === "/";
 
-  const [openMenu, setOpenMenu] = useState(false);
-
-  const handleProfileMenuOpen = () => {
-    setOpenMenu(true);
-  };
+  // Account Menu
+  const [anchorEl, setAnchorEl] = useState(null);
 
   return (
     <div className={styles.grow}>
@@ -34,7 +31,9 @@ export default function PrimarySearchAppBar() {
               edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={(e) => {
+                setAnchorEl(e.currentTarget);
+              }}
               color="inherit"
             >
               <AccountCircle />
@@ -43,20 +42,20 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       <AccountMenu
-        isMenuOpen={openMenu}
-        closeMenu={() => {
-          setOpenMenu(false);
+        anchorEl={anchorEl}
+        close={() => {
+          setAnchorEl(null);
         }}
       />
     </div>
   );
 }
 
-const AccountMenu = ({ isMenuOpen, closeMenu }) => {
+const AccountMenu = ({ anchorEl, close }) => {
   const history = useHistory();
 
   function handleClickProfile() {
-    closeMenu();
+    close();
     history.push(profilePath);
   }
 
@@ -64,10 +63,11 @@ const AccountMenu = ({ isMenuOpen, closeMenu }) => {
 
   return (
     <Menu
-      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={closeMenu}
+      open={Boolean(anchorEl)}
+      onClose={close}
     >
       <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
       <MenuItem onClick={() => action(status)}>{text}</MenuItem>
