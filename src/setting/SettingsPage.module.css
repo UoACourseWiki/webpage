@@ -29,10 +29,20 @@
   top: 20px;
 }
 
+/* password */
 .pdContainer {
   display: flex;
 }
 
+.pdShow {
+  display: block;
+}
+
+.pdHidden {
+  display: none;
+}
+
+/* hint */
 .hintSwt {
   left: 12px;
   margin-right: 10px;
