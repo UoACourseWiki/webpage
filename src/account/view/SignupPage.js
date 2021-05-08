@@ -13,6 +13,8 @@ import {
   Card,
   Switch,
   CardContent,
+  Grid,
+  Link
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "./SignupPage.module.css";
@@ -20,6 +22,7 @@ import styles from "./SignupPage.module.css";
 import { useState } from "react";
 import { validEmail, validPassword } from "../../utils/validator";
 import { Copyright } from "../../utils/ViewComponent";
+import { loginPath } from "../../utils/URLPath";
 
 const SignupPage = ({ updateInfo, isWaiting, submit }) => {
   const [enableSubmit, setEnableSubmit] = useState(false);
@@ -83,6 +86,13 @@ const SignupPage = ({ updateInfo, isWaiting, submit }) => {
             }
             label="Accept Term of Service"
           />
+          <Grid className={styles.grid} container>
+            <Grid item>
+              <Link href={loginPath} variant="body2">
+                {"Already have account? Login"}
+              </Link>
+            </Grid>
+          </Grid>
           <Button
             fullWidth
             variant="contained"
