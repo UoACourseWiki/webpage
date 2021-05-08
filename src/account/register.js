@@ -24,7 +24,12 @@ const resigter = (user, callback) => {
     },
     (err) => {
       const res = err.response;
-      const errmsg = res.data.message;
+
+      var errmsg = "Sorry, Unknown Error please try again!";
+      if (res !== undefined && res.data !== undefined) {
+        errmsg = res.data.message;
+      }
+
       callback(res.status, errmsg);
     }
   );
