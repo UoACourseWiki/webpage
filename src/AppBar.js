@@ -6,8 +6,9 @@ import SearchPage from "./search/searchPage";
 import styles from "./AppBar.module.css";
 import { profilePath } from "./utils/URLPath";
 import { useHistory } from "react-router";
-import { useCookies } from "react-cookie";
 import { useLocation } from "react-router-dom";
+
+import Auth from "./account/Auth";
 
 export default function PrimarySearchAppBar() {
   const location = useLocation();
@@ -52,7 +53,6 @@ export default function PrimarySearchAppBar() {
 }
 
 const AccountMenu = ({ isMenuOpen, closeMenu }) => {
-  const [cookies, , removeCookie] = useCookies(["user"]);
   const history = useHistory();
 
   function handleClickProfile() {
@@ -60,10 +60,7 @@ const AccountMenu = ({ isMenuOpen, closeMenu }) => {
     history.push(profilePath);
   }
 
-  function handleClickLogout() {
-    removeCookie("user", { path: "/" });
-    window.location.reload();
-  }
+  const [status, text, action] = Auth();
 
   return (
     <Menu
@@ -72,14 +69,8 @@ const AccountMenu = ({ isMenuOpen, closeMenu }) => {
       open={isMenuOpen}
       onClose={closeMenu}
     >
-      {cookies.user !== undefined ? (
-        <>
-          <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
-          <MenuItem onClick={handleClickLogout}>Logout</MenuItem>
-        </>
-      ) : (
-        <>{/* <LoginButton /> */}</>
-      )}
+      <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
+      <MenuItem onClick={() => action(status)}>{text}</MenuItem>
     </Menu>
   );
 };
