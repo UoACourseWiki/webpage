@@ -2,9 +2,9 @@ import { Snackbar, IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import MuiAlert from "@material-ui/lab/Alert";
 
-const SuccessBar = ({ open, onClick, message }) => {
+const SuccessBar = ({ open, clickClose, message }) => {
   return (
-    <Snackbar open={open} autoHideDuration={1000}>
+    <Snackbar open={open} autoHideDuration={1500} onClose={clickClose}>
       <MuiAlert
         elevation={6}
         variant="filled"
@@ -14,7 +14,7 @@ const SuccessBar = ({ open, onClick, message }) => {
             aria-label="close"
             color="inherit"
             size="small"
-            onClick={onClick}
+            onClick={clickClose}
           >
             <CloseIcon fontSize="inherit" />
           </IconButton>
@@ -26,9 +26,9 @@ const SuccessBar = ({ open, onClick, message }) => {
   );
 };
 
-const FailBar = ({ open, onClick, message }) => {
+const FailBar = ({ open, clickClose, message }) => {
   return (
-    <Snackbar open={open} autoHideDuration={1000}>
+    <Snackbar open={open} autoHideDuration={1500} onClose={clickClose}>
       <MuiAlert
         elevation={6}
         variant="filled"
@@ -38,7 +38,7 @@ const FailBar = ({ open, onClick, message }) => {
             aria-label="close"
             color="inherit"
             size="small"
-            onClick={onClick}
+            onClick={clickClose}
           >
             <CloseIcon fontSize="inherit" />
           </IconButton>
