@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import { Homepage } from "./homepage";
 import { init as AccountInit } from "./account/router";
-import { init as SettingInit } from "./account/setting/router";
+import { init as SettingInit } from "./setting/router";
 import { init as CourseInit } from "./course/router";
 import PrimarySearchAppBar from "./AppBar";
 import { accountPath, coursePathPrefix, profilePath } from "./utils/URLPath";
