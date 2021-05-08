@@ -30,19 +30,21 @@ const linkPrefix = "/course";
 function parseSubjectResBody(data) {
   var subjects = new Set();
 
-  var cItmes = data
-    .map((course) => {
-      var sbjt = course.subject;
-      subjects.add(sbjt);
+  var cItmes = data.map((course) => {
+    var sbjt = course.subject;
+    subjects.add(sbjt);
 
-      var ctlgNbr = course.catalogNbr;
-      var courseKey = sbjt + "-" + ctlgNbr;
-      var linkPath = `${linkPrefix}/${sbjt}/${ctlgNbr}`;
+    var ctlgNbr = course.catalogNbr;
+    var courseKey = sbjt + "-" + ctlgNbr;
+    var linkPath = `${linkPrefix}/${sbjt}/${ctlgNbr}`;
 
-      return { label: courseKey, value: linkPath, status: HTTP_OK };
-    })
-    .slice(0, showCnt);
+    return { label: courseKey, value: linkPath, status: HTTP_OK };
+  });
 
+  // shuffle items for display
+  cItmes = cItmes.sort((a, b) => 0.5 - Math.random()).slice(0, showCnt);
+
+  // add subject entry
   var sItems = Array.from(subjects)
     .map((s) => {
       var linkPath = `${linkPrefix}/${s}`;
