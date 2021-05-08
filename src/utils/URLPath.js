@@ -9,6 +9,7 @@ const profilePath = "/setting";
 const coursePathPrefix = "/course";
 const subjectPath = "/course/:subject";
 const coursePath = "/course/:subject/:courseId";
+const emailValidatePath = "/email_validate";
 
 export {
   signupPath,
@@ -19,4 +20,5 @@ export {
   coursePath,
   subjectPath,
   profilePath,
+  emailValidatePath
 };

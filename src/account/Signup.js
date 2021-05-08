@@ -15,7 +15,7 @@ export default function SignUp(props) {
   // request and handle result
   const [waiting, setWaiting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const successMsg = "🤗 Registered!";
+  const successMsg = "🤗 Check your email to verify your account now!";
 
   const [showFail, setShowFail] = useState(false);
   const [error, setError] = useState("");
