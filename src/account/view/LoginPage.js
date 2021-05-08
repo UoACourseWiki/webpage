@@ -53,7 +53,6 @@ export default function LoginPage({ updateInfo, isWaiting, submit }) {
             label="Remember me"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"

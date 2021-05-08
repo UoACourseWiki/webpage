@@ -71,7 +71,7 @@ export default function CoursePage() {
   const [sectionSelected, setSectionSelected] = useState("");
 
   const query = `/${subject.toUpperCase()}/${courseId}`;
-  console.log(query);
+
   const ref = React.createRef;
   const handleChangeSemester = async (event) => {
     await fetch(

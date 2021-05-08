@@ -54,10 +54,10 @@ export default function SignUp(props) {
       />
       <SuccessBar
         open={showSuccess}
-        onClick={handleSuccess}
+        clickClose={handleSuccess}
         message={successMsg}
       />
-      <FailBar open={showFail} onClick={handleFailure} message={error} />
+      <FailBar open={showFail} clickClose={handleFailure} message={error} />
     </>
   );
 }
