@@ -15,10 +15,14 @@ export default function LoginPage({ updateInfo, isWaiting, submit }) {
       <CssBaseline />
       <div className={styles.paper}>
         <Typography component="h1" variant="h5">
-          Log in to CourseWiki
+          Reset your password
         </Typography>
 
         <form className={styles.form}>
+          <p>
+            Enter your user account's verified email address and we will send
+            you a password reset link.
+          </p>
           <TextField
             variant="outlined"
             margin="normal"
@@ -33,7 +37,6 @@ export default function LoginPage({ updateInfo, isWaiting, submit }) {
           />
 
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"

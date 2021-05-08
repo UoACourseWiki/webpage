@@ -17,7 +17,7 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "./SignupPage.module.css";
 
 import { useState } from "react";
-import { validEmail, validPassword } from "./validator";
+import { validEmail, validPassword } from "../validator";
 import { Copyright } from "../../utils/ViewComponent";
 
 const SignupPage = ({ updateInfo, isWaiting, submit }) => {

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SuccessBar, FailBar } from "./view/ResultBar";
 import { useHistory } from "react-router-dom";
 import { axios732 } from "../utils/Macro";
+import { validEmail } from "./validator";
 
 const APIURL = "/Users/forgot-password";
 
@@ -17,11 +18,17 @@ export default function ResetPassowrd() {
   const [waiting, setWaiting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const successMsg = "🤗 Check your mailbox ~";
-  const failMsg = "Unknown Error please try again!";
+  const [failMsg, setFailMsg] = useState("");
 
   const [showFail, setShowFail] = useState(false);
 
   const handleSubmit = () => {
+    if (!validEmail(user.em)) {
+      setFailMsg("Email not valid!");
+      setShowFail(true);
+      return;
+    }
+
     setWaiting(true);
 
     axios732.post(APIURL, { email: user.em }).then(
