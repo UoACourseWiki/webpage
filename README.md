@@ -32,7 +32,7 @@ in your browser after you have your server-end setup.
 ### Use Remote Server
 If you just want to check how it works in front-end and/or the backend server simply didn't fire up on your machine, we have our remote server working in production mode as well! (And thanks Joe for settin up the remote server!)
 
-To use remote server, run the App in `production mode`.
+To use remote server, you would need to run the App in `production build`.
 
 If you want to use it in `development mode`, you need to change the URL in file `webpage/.env.development` to:
 ```
