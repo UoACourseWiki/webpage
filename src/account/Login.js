@@ -1,10 +1,11 @@
 import LoginPage from "./view/LoginPage";
 import { useState } from "react";
 import { SuccessBar, FailBar } from "../utils/ResultBar";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { axios732 } from "../utils/Macro";
 import { useCookies } from "react-cookie";
 import { validEmail } from "../utils/validator";
+import { loginRedirectQueryKey } from "../utils/URLPath";
 
 const APIURL = "/Users/authenticate";
 const bodyKeys = {
@@ -24,7 +25,7 @@ export default function Login() {
   // HTTP request
   const [waiting, setWaiting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const successMsg = "🤗 Login Successful!";
+  const successMsg = "🤗 Login Successfully!";
 
   const [showFail, setShowFail] = useState(false);
   const [failMsg, setFailMsg] = useState("");
@@ -77,10 +78,19 @@ export default function Login() {
     );
   };
 
+  // redirect to URL when successfully login
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const redirURL = params.get(loginRedirectQueryKey);
+
   const history = useHistory();
   function handleSuccessBar() {
     setShowSuccess(false);
-    history.push("/");
+    if (redirURL) {
+      history.push(redirURL);
+    } else {
+      history.push("/");
+    }
   }
 
   function handleFailureBar() {

@@ -2,6 +2,8 @@
 const accountPath = "/account";
 const signupPath = "/account/join";
 const loginPath = "/account/login";
+const loginAndRedirect = "/account/login?redir=";
+const loginRedirectQueryKey = "redir";
 const forgetPassword = "/account/password_reset";
 
 const profilePath = "/setting";
@@ -15,6 +17,8 @@ const passwordReset = "/reset-password";
 export {
   signupPath,
   loginPath,
+  loginAndRedirect,
+  loginRedirectQueryKey,
   accountPath,
   forgetPassword,
   coursePathPrefix,
