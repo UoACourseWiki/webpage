@@ -3,9 +3,9 @@ import LoginPage from "../account/view/LoginPage";
 import SignupPage from "../account/view/SignupPage";
 import SubjectView from "../course/subjectView";
 import SettingsPage from "../setting/SettingsPage";
-import EmailValidate from "../users/EmailValidate";
-import ForgetPasswordPage from "../users/view/ForgetPasswordPage";
-import ResetPasswordPage from "../users/view/ResetPasswordPage";
+import EmailValidate from "../user/EmailValidate";
+import ForgetPasswordPage from "../user/view/ForgetPasswordPage";
+import ResetPasswordPage from "../user/view/ResetPasswordPage";
 
 const mockCourseData = [
   {
