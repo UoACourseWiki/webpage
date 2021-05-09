@@ -5,10 +5,9 @@ const loginPath = "/account/login";
 const loginAndRedirect = "/account/login?redir=";
 const loginRedirectQueryKey = "redir";
 
-const UsersPath = "/Users";
-const emailValidatePath = "/Users/email_validate";
-const forgetPswdPath = "/Users/forget_password";
-const resetPswdPath = "/Users/reset_password";
+const emailValidatePath = "/email_validate";
+const forgetPswdPath = "/forget_password";
+const resetPswdPath = "/reset";
 
 const profilePath = "/setting";
 
@@ -29,5 +28,4 @@ export {
   profilePath,
   emailValidatePath,
   resetPswdPath,
-  UsersPath,
 };

@@ -4,7 +4,7 @@ import { Homepage } from "./homepage";
 import { init as AccountInit } from "./account/router";
 import { init as SettingInit } from "./setting/router";
 import { init as CourseInit } from "./course/router";
-import { init as UsersInit } from "./users/route";
+import { ForgetPassowrd, ResetPassword, EmailValidate } from "./user/user";
 
 import PrimarySearchAppBar from "./AppBar";
 
@@ -12,7 +12,9 @@ import {
   accountPath,
   coursePathPrefix,
   profilePath,
-  UsersPath,
+  forgetPswdPath,
+  resetPswdPath,
+  emailValidatePath,
 } from "./utils/URLPath";
 
 function App() {
@@ -24,8 +26,14 @@ function App() {
         <Route path={accountPath}>
           <AccountInit />
         </Route>
-        <Route path={UsersPath}>
-          <UsersInit />
+        <Route path={emailValidatePath}>
+          <EmailValidate />
+        </Route>
+        <Route path={forgetPswdPath}>
+          <ForgetPassowrd />
+        </Route>
+        <Route path={resetPswdPath}>
+          <ResetPassword />
         </Route>
         <Route path={profilePath}>
           <SettingInit />
