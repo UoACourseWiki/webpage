@@ -2,7 +2,7 @@ import LoginPage from "./view/LoginPage";
 import { useState } from "react";
 import { SuccessBar, FailBar } from "../utils/ResultBar";
 import { useHistory, useLocation } from "react-router-dom";
-import { axios732 } from "../utils/Macro";
+import { axios732, errorMessage } from "../utils/HTTPHelper";
 import { useCookies } from "react-cookie";
 import { validEmail } from "../utils/validator";
 import { loginRedirectQueryKey } from "../utils/URLPath";
@@ -65,14 +65,7 @@ export default function Login() {
       (err) => {
         setWaiting(false);
 
-        const res = err.response;
-
-        var errmsg = "Sorry, Unknown Error please try again!";
-        if (res !== undefined && res.data !== undefined) {
-          errmsg = res.data.message;
-        }
-
-        setFailMsg(errmsg);
+        setFailMsg(errorMessage(err));
         setShowFail(true);
       }
     );

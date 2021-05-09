@@ -4,7 +4,7 @@ import { SuccessBar, FailBar } from "../utils/ResultBar";
 import { validEmail } from "../utils/validator";
 import { useHistory } from "react-router-dom";
 import { loginPath } from "../utils/URLPath";
-import { axios732 } from "../utils/Macro";
+import { axios732, errorMessage } from "../utils/HTTPHelper";
 
 const APIPath = "/Users/reset-password";
 const bodyKeys = {
@@ -55,18 +55,7 @@ export default function ResetPassowrd() {
       (err) => {
         setWaiting(false);
 
-        var errmsg = undefined;
-        if (err !== undefined) {
-          const res = err.response;
-          if (res !== undefined && res.data !== undefined) {
-            errmsg = res.data.message;
-          }
-        }
-
-        if (errmsg === undefined) {
-          errmsg = "Sorry, Unknown Error please try again!";
-        }
-
+        const errmsg = errorMessage(err);
         setFailMsg(errmsg);
         setShowFailBar(true);
       }

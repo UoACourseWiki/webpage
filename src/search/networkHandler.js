@@ -1,4 +1,4 @@
-import { axios732, HTTP_OK } from "../utils/Macro";
+import { axios732, HTTP_OK } from "../utils/HTTPHelper";
 
 const APIPath = "/Courses";
 const queryKey = "search";

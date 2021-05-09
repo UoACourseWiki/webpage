@@ -1,4 +1,4 @@
-import { axios732, HTTP_OK } from "../utils/Macro";
+import { axios732, HTTP_OK, errorMessage } from "../utils/HTTPHelper";
 import { validEmail } from "../utils/validator";
 
 function validate(user, callback) {
@@ -64,7 +64,7 @@ const setInfo = (user, newUser, callback) => {
     },
     (err) => {
       const res = err.response;
-      const errmsg = res.data.message;
+      const errmsg = errorMessage(err);
       callback(res.status, errmsg);
     }
   );

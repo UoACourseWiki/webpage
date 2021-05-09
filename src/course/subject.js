@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { axios732 } from "../utils/Macro";
+import { axios732 } from "../utils/HTTPHelper";
 import SubjectView from "./subjectView";
 
 const APIPath = "/Courses";

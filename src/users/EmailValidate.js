@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import { axios732, HTTP_OK } from "../utils/Macro";
+import { axios732, HTTP_OK } from "../utils/HTTPHelper";
 
 function Copyright() {
   return (
