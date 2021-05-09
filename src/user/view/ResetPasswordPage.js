@@ -16,7 +16,7 @@ import {
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "../../setting/SettingsPage.module.css";
 import { useState } from "react";
-import { Copyright } from "../../utils/ViewComponent";
+import { Copyright } from "../../utils/views/Copyright";
 import { validPassword } from "../../utils/validator";
 
 export default function ResetPasswordPage({

@@ -1,6 +1,6 @@
 import LoginPage from "./view/LoginPage";
 import { useState } from "react";
-import { SuccessBar, FailBar } from "../utils/ResultBar";
+import { SuccessBar, FailBar } from "../utils/views/ResultBar";
 import { useHistory, useLocation } from "react-router-dom";
 import { axios732, errorMessage } from "../utils/HTTPHelper";
 import { useCookies } from "react-cookie";

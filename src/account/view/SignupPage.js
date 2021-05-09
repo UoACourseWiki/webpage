@@ -21,7 +21,7 @@ import styles from "./SignupPage.module.css";
 
 import { useState } from "react";
 import { validEmail, validPassword } from "../../utils/validator";
-import { Copyright } from "../../utils/ViewComponent";
+import { Copyright } from "../../utils/views/Copyright";
 import { loginPath } from "../../utils/URLPath";
 
 const SignupPage = ({ updateInfo, isWaiting, submit }) => {

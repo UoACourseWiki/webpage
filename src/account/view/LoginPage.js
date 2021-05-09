@@ -10,7 +10,7 @@ import {
   Checkbox,
   Link,
 } from "@material-ui/core";
-import { Copyright } from "../../utils/ViewComponent";
+import { Copyright } from "../../utils/views/Copyright";
 import styles from "./LoginPage.module.css";
 import { signupPath, forgetPswdPath } from "../../utils/URLPath";
 

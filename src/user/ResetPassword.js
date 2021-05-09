@@ -1,6 +1,6 @@
 import ResetPasswordPage from "./view/ResetPasswordPage";
 import { useState } from "react";
-import { SuccessBar, FailBar } from "../utils/ResultBar";
+import { SuccessBar, FailBar } from "../utils/views/ResultBar";
 import { useHistory } from "react-router-dom";
 import { loginPath } from "../utils/URLPath";
 import { axios732, errorMessage } from "../utils/HTTPHelper";

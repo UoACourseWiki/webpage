@@ -6,7 +6,7 @@ import {
   Typography,
   CssBaseline,
 } from "@material-ui/core";
-import { Copyright } from "../../utils/ViewComponent";
+import { Copyright } from "../../utils/views/Copyright";
 import styles from "../../setting/SettingsPage.module.css";
 
 export default function ForgetPasswordPage({ updateInfo, isWaiting, submit }) {
