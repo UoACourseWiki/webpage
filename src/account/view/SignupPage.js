@@ -10,11 +10,9 @@ import {
   Typography,
   CssBaseline,
   Checkbox,
-  Card,
   Switch,
-  CardContent,
   Grid,
-  Link
+  Link,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "./SignupPage.module.css";
@@ -22,6 +20,8 @@ import styles from "./SignupPage.module.css";
 import { useState } from "react";
 import { validEmail, validPassword } from "../../utils/validator";
 import { Copyright } from "../../utils/views/Copyright";
+import PasswordHintCard from "../../utils/views/PasswordHintCard";
+
 import { loginPath } from "../../utils/URLPath";
 
 const SignupPage = ({ updateInfo, isWaiting, submit }) => {
@@ -150,6 +150,7 @@ const EmailInputText = ({ updateInfo, enableSubmit }) => {
   );
 };
 
+const pswdMinLength = 6;
 const PasswordInputText = ({ updateInfo, enableSubmit }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -171,7 +172,7 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
 
   function handlePasdChange(e) {
     var passwd = e.target.value;
-    var v = validPassword(passwd, miniLength);
+    var v = validPassword(passwd, pswdMinLength);
 
     updateCondition(v);
     setPassword(passwd);
@@ -212,7 +213,11 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
           label="Hint"
         />
       </div>
-      <PdRequirementsCard open={showHint} conditions={conditions} />
+      <PasswordHintCard
+        open={showHint}
+        miniLength={pswdMinLength}
+        conditions={conditions}
+      />
       <div className={styles.repeatPd}>
         <RepeatPassowrdInputText
           initPassword={password}
@@ -220,40 +225,6 @@ const PasswordInputText = ({ updateInfo, enableSubmit }) => {
         />
       </div>
     </>
-  );
-};
-
-const miniLength = 6;
-const PdRequirementsCard = ({ open, conditions }) => {
-  return (
-    <Card style={{ marginTop: "4px" }}>
-      <CardContent className={open ? styles.hintShow : styles.hintHidden}>
-        <p
-          id="length"
-          className={conditions.length ? styles.pdValid : styles.pdInvalid}
-        >
-          Minimum <b>{miniLength} characters</b>
-        </p>
-        <p
-          id="letter"
-          className={conditions.letter ? styles.pdValid : styles.pdInvalid}
-        >
-          <b>Lowercase </b> & <b> Capital (Uppercase) </b> letters
-        </p>
-        <p
-          id="symbol"
-          className={conditions.symbol ? styles.pdValid : styles.pdInvalid}
-        >
-          A <b>symbol</b> letter
-        </p>
-        <p
-          id="number"
-          className={conditions.number ? styles.pdValid : styles.pdInvalid}
-        >
-          A <b>number</b>
-        </p>
-      </CardContent>
-    </Card>
   );
 };
 

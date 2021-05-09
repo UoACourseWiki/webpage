@@ -1,13 +1,3 @@
-.pdInvalid {
-  color: dimgrey;
-  font-style: italic;
-}
-
-.pdValid {
-  color: green;
-  font-style: italic;
-}
-
 .paper {
   margin-top: 8px;
   display: flex;
@@ -40,14 +30,6 @@
 .hintSwt {
   left: 12px;
   margin-right: 10px;
-}
-
-.hintShow {
-  display: block;
-  background-color: aliceblue;
-}
-.hintHidden {
-  display: none;
 }
 
 .repeatPd {
