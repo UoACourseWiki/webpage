@@ -5,6 +5,7 @@ Course Wiki is a Single Page Application build by React.js, supported by .Net Co
 
 This is a project assignment for UOA Computer Science School paper COMPSCI 732.
 
+![course screenshot](/docs/course.png)
 # Our Team Members
 
 ## Backend developer - Repo visit [CourseWiki](https://github.com/UoACourseWiki/CourseWiki) 
