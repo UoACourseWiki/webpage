@@ -86,10 +86,11 @@ const SignupButton = () => {
 
   return (
     <Button
-      color="inherit"
       onClick={() => {
         window.location.href = signupPath;
       }}
+      color="primary"
+      variant="outlined"
     >
       Join Wiki!
     </Button>
