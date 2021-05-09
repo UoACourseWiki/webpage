@@ -48,7 +48,7 @@ export default function ResetPassowrd() {
 
     setWaiting(true);
     axios732.post(APIPath, body).then(
-      (res) => {
+      () => {
         setWaiting(false);
         setShowSuccessBar(true);
       },

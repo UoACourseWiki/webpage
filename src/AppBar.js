@@ -114,7 +114,7 @@ const AccountMenu = ({ anchorEl, close }) => {
       open={Boolean(anchorEl)}
       onClose={close}
     >
-      <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
+      <MenuItem onClick={handleClickProfile}>Settings</MenuItem>
       <MenuItem onClick={() => action(status)}>{text}</MenuItem>
     </Menu>
   );
