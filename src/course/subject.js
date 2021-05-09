@@ -18,17 +18,22 @@ export default function Subject() {
   const subjectParams = {};
   subjectParams[queryKey] = subject.toUpperCase();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     axios732.get(APIPath, { params: subjectParams }).then(
       (res) => {
         updateCourses(res.data);
+        setIsLoading(false);
       },
       (err) => {
         const res = err.response;
         setResError(res);
+        setIsLoading(false);
       }
     );
   }, []);
 
-  return <SubjectView courses={courses} error={resError} />;
+  return <SubjectView courses={courses} error={resError} loading={isLoading} />;
 }
