@@ -9,9 +9,7 @@ import {
   Box,
   Typography,
   CssBaseline,
-  Card,
   Switch,
-  CardContent,
   Checkbox,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
@@ -19,6 +17,7 @@ import styles from "./SettingsPage.module.css";
 import { useState } from "react";
 import { Copyright } from "../utils/views/Copyright";
 import { validPassword } from "../utils/validator";
+import PasswordHintCard from "../utils/views/PasswordHintCard";
 
 const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {
   const [newPswdValid, setNewPswdValid] = useState(false);
@@ -100,6 +99,7 @@ const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {
   );
 };
 
+const PswdminLength = 6;
 const PasswordInputText = ({ show, updateInfo, updatePswdValid }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -121,7 +121,7 @@ const PasswordInputText = ({ show, updateInfo, updatePswdValid }) => {
 
   function handlePasdChange(e) {
     var passwd = e.target.value;
-    var v = validPassword(passwd, miniLength);
+    var v = validPassword(passwd, PswdminLength);
 
     updateCondition(v);
     setPassword(passwd);
@@ -129,7 +129,6 @@ const PasswordInputText = ({ show, updateInfo, updatePswdValid }) => {
 
   return (
     <div className={show ? styles.pdShow : styles.pdHidden}>
-      <p>Leave New Password field empty if you do not want to change them</p>
       <div className={styles.pdContainer}>
         <OutlinedInput
           type={showPassword ? "text" : "password"}
@@ -163,7 +162,11 @@ const PasswordInputText = ({ show, updateInfo, updatePswdValid }) => {
           label="Hint"
         />
       </div>
-      <PdRequirementsCard open={showHint} conditions={conditions} />
+      <PasswordHintCard
+        open={showHint}
+        miniLength={PswdminLength}
+        conditions={conditions}
+      />
       <div className={styles.repeatPd}>
         <RepeatPassowrdInputText
           initPassword={password}
@@ -171,40 +174,6 @@ const PasswordInputText = ({ show, updateInfo, updatePswdValid }) => {
         />
       </div>
     </div>
-  );
-};
-
-const miniLength = 6;
-const PdRequirementsCard = ({ open, conditions }) => {
-  return (
-    <Card style={{ marginTop: "4px" }}>
-      <CardContent className={open ? styles.hintShow : styles.hintHidden}>
-        <p
-          id="length"
-          className={conditions.length ? styles.pdValid : styles.pdInvalid}
-        >
-          Minimum <b>{miniLength} characters</b>
-        </p>
-        <p
-          id="letter"
-          className={conditions.letter ? styles.pdValid : styles.pdInvalid}
-        >
-          <b>Lowercase </b> & <b> Capital (Uppercase) </b> letters
-        </p>
-        <p
-          id="symbol"
-          className={conditions.symbol ? styles.pdValid : styles.pdInvalid}
-        >
-          A <b>symbol</b> letter
-        </p>
-        <p
-          id="number"
-          className={conditions.number ? styles.pdValid : styles.pdInvalid}
-        >
-          A <b>number</b>
-        </p>
-      </CardContent>
-    </Card>
   );
 };
 
