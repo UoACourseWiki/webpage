@@ -56,7 +56,7 @@ export default function ResetPasswordPage({
             onClick={submit}
             disabled={!newPswdValid || isWaiting}
           >
-            Send password reset email
+            Reset Password
           </Button>
         </form>
       </div>
