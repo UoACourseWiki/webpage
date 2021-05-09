@@ -64,3 +64,26 @@ If it's not working, contact Joe (hwu263@aucklanduni.ac.nz) to have a check on t
 However, longer waiting time on responses is expected due to where the physical location it has been set.
 
 > Please be mentioned, the Swagger API interface and remote server is intended for debugging and developing only. Please do not use it for production purpose.
+
+
+# Purpose of the project 
+ The project is about a wiki of courses that provides information for students to select courses. The website collects all the courses of a major, provides information of each course, the prerequisite requirement of the course, and the course arrangement of different years.
+
+ # Application  Feature
+ 	User can search course/subject in search page.
+    User account login/signup/reset/profile in account page.
+    User can find all the courses in a specific subject in subject page.
+    User can  find each course information in the course page .
+
+# Search
+ This is our Main page, on this page, the user can jump to the Subject page by searching the course name, or the user can directly jump to the course page directly by searching the course name plus the course number. If the user does not enter the correct course name, the system will prompt that it has not been found.
+
+ # Account（logIn /signUp）
+ This part is mainly for users to log in and signup this website, users signup/log in through email. If the user forgets the password, it can be sent email to user account's verified email address to reset
+
+ # Subject
+ This page is a list of all available courses in one Subject that is queried by the search function on the home page.
+
+ # Course 
+  This page is based on an introduction to each course, Users can find the year and semester of the course. For those who are not experienced in selecting courses, this page provides the required prerequisites for each course and the grade for the prerequisites
+
