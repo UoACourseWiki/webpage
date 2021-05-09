@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { SuccessBar, FailBar } from "../utils/views/ResultBar";
+import {loginPath} from "../utils/URLPath";
 
 import { axios732 } from "../utils/HTTPHelper";
 import { Copyright } from "../utils/views/Copyright";
@@ -59,6 +60,7 @@ export default function EmailValidate() {
 
   function handleSuccessBar() {
     setShowSuccessBar(false);
+    window.location.href = loginPath;
   }
 
   function handleFailureBar() {
