@@ -43,6 +43,15 @@ describe("Pages render test", () => {
     expect(element).toBeTruthy();
   });
 
+  it("should show notfound when no courses in subject page", () => {
+    const buttonText = "Back to Home";
+
+    const cs = [];
+    const { getByText } = render(<SubjectView courses={cs} />);
+    const element = getByText(buttonText);
+    expect(element).toBeTruthy();
+  });
+
   it("should show settings components", () => {
     const pageTitle = "Change your account settings";
 
