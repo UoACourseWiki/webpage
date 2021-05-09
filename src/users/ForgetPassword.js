@@ -1,4 +1,4 @@
-import ResetPage from "./view/ResetPage";
+import ForgetPassowrdPage from "./view/ForgetPasswordPage";
 import { useState } from "react";
 import { SuccessBar, FailBar } from "../utils/ResultBar";
 import { useHistory } from "react-router-dom";
@@ -7,7 +7,7 @@ import { validEmail } from "../utils/validator";
 
 const APIURL = "/Users/forgot-password";
 
-export default function ResetPassowrd() {
+export default function ForgetPassowrd() {
   const [user, setUser] = useState({});
 
   function updateUser(field) {
@@ -55,7 +55,7 @@ export default function ResetPassowrd() {
 
   return (
     <>
-      <ResetPage
+      <ForgetPassowrdPage
         updateInfo={updateUser}
         submit={handleSubmit}
         isWaiting={waiting}

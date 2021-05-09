@@ -7,9 +7,9 @@ import {
   CssBaseline,
 } from "@material-ui/core";
 import { Copyright } from "../../utils/ViewComponent";
-import styles from "./ResetPage.module.css";
+import styles from "./ForgetPasswordPage.css";
 
-export default function LoginPage({ updateInfo, isWaiting, submit }) {
+export default function ForgetPassowrdPage({ updateInfo, isWaiting, submit }) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

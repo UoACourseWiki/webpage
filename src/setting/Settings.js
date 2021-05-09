@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 
 import SettingsPage from "./SettingsPage.js";
 import { setInfo, validate } from "./settingsHandler.js";
-import { loginPath } from "../utils/URLPath.js";
+import { loginAndRedirect } from "../utils/URLPath.js";
 import { HTTP_OK } from "../utils/Macro.js";
 import { SuccessBar, FailBar } from "../utils/ResultBar.js";
 import TokenRefresher from "../utils/TokenRefresher.js";
@@ -14,7 +14,9 @@ export default function Settings() {
 
   //Guard: Check if user logged in, if not redirect to Login page
   if (currentUser === undefined) {
-    window.location.replace(loginPath);
+    const selfPath = window.location.pathname;
+    const redirectPath = loginAndRedirect + selfPath;
+    window.location.replace(redirectPath);
   }
 
   const [user, setUser] = useState({
