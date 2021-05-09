@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import { Copyright } from "../../utils/ViewComponent";
 import styles from "./LoginPage.module.css";
-import { signupPath, forgetPassword } from "../../utils/URLPath";
+import { signupPath, forgetPswdPath } from "../../utils/URLPath";
 
 export default function LoginPage({ updateInfo, isWaiting, submit }) {
   return (
@@ -63,7 +63,7 @@ export default function LoginPage({ updateInfo, isWaiting, submit }) {
           </Button>
           <Grid className={styles.grid} container>
             <Grid item xs>
-              <Link href={forgetPassword} variant="body2">
+              <Link href={forgetPswdPath} variant="body2">
                 Forgot password?
               </Link>
             </Grid>

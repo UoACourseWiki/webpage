@@ -1,9 +1,15 @@
 import { Switch, Route, Redirect } from "react-router-dom";
+
+import {
+  signupPath,
+  loginPath,
+  forgetPswdPath,
+  resetPswdPath,
+} from "../utils/URLPath";
 import Login from "./Login.js";
 import SignUp from "./Signup";
-import ResetPassowrd from "./Reset";
-
-import { signupPath, loginPath, forgetPassword } from "../utils/URLPath";
+import ForgetPassowrd from "./ForgetPassword";
+import ResetPassword from "./ResetPassword";
 
 function Init() {
   return (
@@ -14,8 +20,11 @@ function Init() {
       <Route path={loginPath}>
         <Login />
       </Route>
-      <Route path={forgetPassword}>
-        <ResetPassowrd />
+      <Route path={forgetPswdPath}>
+        <ForgetPassowrd />
+      </Route>
+      <Route path={resetPswdPath}>
+        <ResetPassword />
       </Route>
 
       <Route path="/">

@@ -4,15 +4,15 @@ const signupPath = "/account/join";
 const loginPath = "/account/login";
 const loginAndRedirect = "/account/login?redir=";
 const loginRedirectQueryKey = "redir";
-const forgetPassword = "/account/password_reset";
+const forgetPswdPath = "/account/forget_password";
+const resetPswdPath = "/account/reset_password";
 
+const emailValidatePath = "/email_validate";
 const profilePath = "/setting";
 
 const coursePathPrefix = "/course";
 const subjectPath = "/course/:subject";
 const coursePath = "/course/:subject/:courseId";
-const emailValidatePath = "/email_validate";
-const passwordReset = "/reset-password";
 
 export {
   signupPath,
@@ -20,11 +20,11 @@ export {
   loginAndRedirect,
   loginRedirectQueryKey,
   accountPath,
-  forgetPassword,
+  forgetPswdPath,
   coursePathPrefix,
   coursePath,
   subjectPath,
   profilePath,
   emailValidatePath,
-  passwordReset,
+  resetPswdPath,
 };

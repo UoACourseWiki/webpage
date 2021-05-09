@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 
 import SettingsPage from "./SettingsPage.js";
 import { setInfo, validate } from "./settingsHandler.js";
-import { loginPath, loginAndRedirect } from "../utils/URLPath.js";
+import { loginAndRedirect } from "../utils/URLPath.js";
 import { HTTP_OK } from "../utils/Macro.js";
 import { SuccessBar, FailBar } from "../utils/ResultBar.js";
 import TokenRefresher from "../utils/TokenRefresher.js";
