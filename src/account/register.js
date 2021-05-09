@@ -1,4 +1,4 @@
-import { axios732, HTTP_OK } from "../utils/Macro";
+import { axios732, HTTP_OK, errorMessage } from "../utils/HTTPHelper";
 
 const APIPath = "Users/register";
 const bodyKeys = {
@@ -24,12 +24,7 @@ const resigter = (user, callback) => {
     },
     (err) => {
       const res = err.response;
-
-      var errmsg = "Sorry, Unknown Error please try again!";
-      if (res !== undefined && res.data !== undefined) {
-        errmsg = res.data.message;
-      }
-
+      var errmsg = errorMessage(err);
       callback(res.status, errmsg);
     }
   );

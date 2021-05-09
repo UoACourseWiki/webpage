@@ -26,7 +26,7 @@ const validPassword = (passwd, miniLength) => {
     number: nbr,
     symbol: smb,
     length: lgth,
-    final: Boolean(ltr & nbr & lgth),
+    final: Boolean(ltr & nbr & smb & lgth),
   };
 
   return result;

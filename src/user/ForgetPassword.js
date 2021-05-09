@@ -1,4 +1,4 @@
-import ForgetPasswordPage from "./view/ForgetPasswordPage";
+import ForgetPassowrdPage from "./ForgetPasswordPage";
 import { useState } from "react";
 import { SuccessBar, FailBar } from "../utils/ResultBar";
 import { useHistory } from "react-router-dom";
@@ -55,7 +55,7 @@ export default function ForgetPassowrd() {
 
   return (
     <>
-      <ForgetPasswordPage
+      <ForgetPassowrdPage
         updateInfo={updateUser}
         submit={handleSubmit}
         isWaiting={waiting}
