@@ -1,7 +1,7 @@
 import styles from "./subjectView.module.css";
 import { useHistory } from "react-router";
 import { coursePathPrefix } from "../utils/URLPath";
-import NotFoundPage from "./NotFoundPage";
+import NotFoundPage from "../utils/views/NotFoundPage";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function SubjectView({ courses, error, loading }) {

@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import { withCookies } from "react-cookie";
 import { Homepage } from "./homepage";
+import NotFoundPage from "./utils/views/NotFoundPage";
 import { init as AccountInit } from "./account/router";
 import { init as SettingInit } from "./setting/router";
 import { init as CourseInit } from "./course/router";
@@ -23,6 +24,9 @@ function App() {
       <PrimarySearchAppBar />
 
       <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
         <Route path={accountPath}>
           <AccountInit />
         </Route>
@@ -41,9 +45,8 @@ function App() {
         <Route path={coursePathPrefix}>
           <CourseInit />
         </Route>
-
-        <Route path="/">
-          <Homepage />
+        <Route>
+          <NotFoundPage errorMessage={"Page Not Found"} />
         </Route>
       </Switch>
     </div>
