@@ -48,6 +48,7 @@ export default function ResetPasswordPage({ updateInfo, isWaiting, submit }) {
             updatePswdValid={(v) => setNewPswdValid(v)}
           />
           <Button
+            className={styles.submit}
             fullWidth
             variant="contained"
             color="primary"
