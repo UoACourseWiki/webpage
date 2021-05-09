@@ -17,7 +17,7 @@ import {
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "./SettingsPage.module.css";
 import { useState } from "react";
-import { Copyright } from "../utils/ViewComponent";
+import { Copyright } from "../utils/views/Copyright";
 import { validPassword } from "../utils/validator";
 
 const SettingsPage = ({ currentUser, updateInfo, isWaiting, submit }) => {

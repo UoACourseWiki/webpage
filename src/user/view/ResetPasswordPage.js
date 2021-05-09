@@ -16,10 +16,15 @@ import {
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import styles from "../../setting/SettingsPage.module.css";
 import { useState } from "react";
-import { Copyright } from "../../utils/ViewComponent";
+import { Copyright } from "../../utils/views/Copyright";
 import { validPassword } from "../../utils/validator";
 
-export default function ResetPasswordPage({ updateInfo, isWaiting, submit }) {
+export default function ResetPasswordPage({
+  initEmail,
+  updateInfo,
+  isWaiting,
+  submit,
+}) {
   const [newPswdValid, setNewPswdValid] = useState(false);
 
   return (
@@ -32,16 +37,13 @@ export default function ResetPasswordPage({ updateInfo, isWaiting, submit }) {
 
         <form className={styles.form}>
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
+            style={{ marginTop: "10px", marginBottom: "10px" }}
+            disabled
+            defaultValue={initEmail}
             label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={(e) => updateInfo({ em: e.target.value })}
+            id="outlined-disabled"
+            variant="outlined"
+            fullWidth
           />
           <PasswordInputText
             updateInfo={updateInfo}

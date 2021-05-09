@@ -1,7 +1,6 @@
 import ResetPasswordPage from "./view/ResetPasswordPage";
 import { useState } from "react";
-import { SuccessBar, FailBar } from "../utils/ResultBar";
-import { validEmail } from "../utils/validator";
+import { SuccessBar, FailBar } from "../utils/views/ResultBar";
 import { useHistory } from "react-router-dom";
 import { loginPath } from "../utils/URLPath";
 import { axios732, errorMessage } from "../utils/HTTPHelper";
@@ -15,16 +14,16 @@ const bodyKeys = {
 };
 
 export default function ResetPassowrd() {
-  const [user, setUser] = useState({});
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
+  const email = params.get("email");
+  const [user, setUser] = useState({ em: email });
 
   function updateUser(field) {
     setUser({ ...user, ...field });
   }
 
   // HTTP request
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("token");
-
   const [waiting, setWaiting] = useState(false);
   const [showSuccessBar, setShowSuccessBar] = useState(false);
   const successMsg = "🤗 Reset Successfully, need login again~";
@@ -32,12 +31,6 @@ export default function ResetPassowrd() {
   const [failMsg, setFailMsg] = useState("");
 
   const handleSubmit = () => {
-    if (!validEmail(user.em)) {
-      setFailMsg("Email not valid!");
-      setShowFailBar(true);
-      return;
-    }
-
     // send request
     var body = {
       [bodyKeys.em]: user.em,
@@ -77,6 +70,7 @@ export default function ResetPassowrd() {
   return (
     <>
       <ResetPasswordPage
+        initEmail={email}
         updateInfo={updateUser}
         submit={handleSubmit}
         isWaiting={waiting}

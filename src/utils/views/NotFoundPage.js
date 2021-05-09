@@ -1,4 +1,4 @@
-import styles from "./subjectView.module.css";
+import styles from "./NotFoundPage.module.css";
 import { useHistory } from "react-router";
 
 export default function NotFoundPage({ errorMessage }) {

@@ -1,6 +1,6 @@
 import ForgetPasswordPage from "./view/ForgetPasswordPage";
 import { useState } from "react";
-import { SuccessBar, FailBar } from "../utils/ResultBar";
+import { SuccessBar, FailBar } from "../utils/views/ResultBar";
 import { useHistory } from "react-router-dom";
 import { axios732 } from "../utils/HTTPHelper";
 import { validEmail } from "../utils/validator";
