@@ -112,15 +112,20 @@ This part is for the system owner to set up some parameter to run this system. s
 * Core Framework - ReactJS
 * UI Library - Material-ui
 * Package management - npm (nodeJS)
-* RESTApi handler - Axios
-* Testing - Jest
+* RESTfulApi handler - Axios
+* Testing - @testing-library/react
 
 ## Backend
 * Core RESTful Service - C# and .netCore
 * Database - postgreSQL
+* Testing - XUnit
 
 ## Unit Testing
 We have a several unit tests using Jest to test our frontend components, frontend services and inner functions to make sure they return acceptable results on code changes and won't break our applications.
+
+## Backend Testing
+We tested if the course is imported correctly and user can get correct information from courses API.
+But they're integration tests, so markers need to set up environment to test correctly.
 
 ## Version Control
 * Version control - Git
