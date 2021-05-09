@@ -1,27 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { SuccessBar, FailBar } from "../utils/views/ResultBar";
 
-import { axios732, HTTP_OK } from "../utils/HTTPHelper";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        CourseWiki
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { axios732 } from "../utils/HTTPHelper";
+import { Copyright } from "../utils/views/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,10 +34,11 @@ export default function EmailValidate() {
   const params = new URLSearchParams(window.location.search);
   const email = params.get("email");
   const token = params.get("token");
-  const [succeedMessage, SetSucceedMessage] = useState(false);
-  const [failedMessage, SetFailedMessage] = useState(false);
-  const [alertMessage, SetAlertMessage] = useState("");
 
+  // HTTP request
+  const [showSuccessBar, setShowSuccessBar] = useState(false);
+  const [showFailBar, setShowFailBar] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const APIURL = "/Users/verify-email";
 
   useEffect(() => {
@@ -61,19 +48,22 @@ export default function EmailValidate() {
         token: token,
       })
       .then((res) => {
-        if (res.status === HTTP_OK) {
-          SetAlertMessage(res.data.message);
-          SetFailedMessage(false);
-          SetSucceedMessage(true);
-        } else {
-          SetAlertMessage("Email Verify Failed Please Try Again!");
-          SetFailedMessage(true);
-        }
+        setAlertMessage(res.data.message);
+        setShowSuccessBar(true);
       })
       .catch((err) => {
-        console.log(err);
+        setAlertMessage("Email Verify Failed Please Try Again!");
+        setShowFailBar(true);
       });
   }, []);
+
+  function handleSuccessBar() {
+    setShowSuccessBar(false);
+  }
+
+  function handleFailureBar() {
+    setShowFailBar(false);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -83,28 +73,16 @@ export default function EmailValidate() {
           Email Verify
         </Typography>
 
-        <Snackbar
-          open={succeedMessage}
-          autoHideDuration={2000}
-          onClose={() => {
-            window.location.href = "/";
-          }}
-        >
-          <MuiAlert elevation={6} variant="filled" severity="success">
-            {alertMessage}
-          </MuiAlert>
-        </Snackbar>
-        <Snackbar
-          open={failedMessage}
-          autoHideDuration={2000}
-          onClose={() => {
-            window.location.href = "/";
-          }}
-        >
-          <MuiAlert elevation={6} variant="filled" severity="error">
-            {alertMessage}
-          </MuiAlert>
-        </Snackbar>
+        <SuccessBar
+          open={showSuccessBar}
+          clickClose={handleSuccessBar}
+          message={alertMessage}
+        />
+        <FailBar
+          open={showFailBar}
+          clickClose={handleFailureBar}
+          message={alertMessage}
+        />
       </div>
       <Box mt={8}>
         <Copyright />
