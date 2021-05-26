@@ -7,7 +7,7 @@ function init() {
   return (
     <Switch>
       <Route path={coursePath}>
-        <CoursePage />;
+        <CoursePage />
       </Route>
       <Route path={subjectPath}>
         <Subject />
